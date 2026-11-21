@@ -10,8 +10,8 @@ export default function LoginPage() {
   const router = useRouter();
   const { login } = useAuth();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('customer@vkstudio.com');
+  const [password, setPassword] = useState('customer123');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 

@@ -110,11 +110,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium transition-all ${
-                    isActive
+                  className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium transition-all ${isActive
                       ? 'bg-amber-500 text-black font-bold shadow-subtle'
                       : 'text-zinc-400 hover:text-white hover:bg-white/5'
-                  }`}
+                    }`}
                 >
                   <item.icon className="w-4 h-4 flex-shrink-0" />
                   <span>{item.label}</span>
