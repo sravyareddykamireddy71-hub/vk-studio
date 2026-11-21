@@ -1,0 +1,188 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id                    String                 @id @default(cuid())
+  name                  String
+  email                 String                 @unique
+  password              String
+  phone                 String?
+  address               String?
+  role                  String                 @default("CUSTOMER") // "CUSTOMER" or "ADMIN"
+  avatar                String?
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+
+  orders                Order[]
+  customizationRequests CustomizationRequest[]
+  reviews               Review[]
+  cartItems             CartItem[]
+  messages              CustomerMessage[]
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String    @unique
+  description String?
+  icon        String?
+  createdAt   DateTime  @default(now())
+
+  products    Product[]
+}
+
+model Product {
+  id                  String                 @id @default(cuid())
+  name                String
+  slug                String                 @unique
+  tagline             String?
+  description         String
+  basePrice           Float
+  images              String                 // JSON array of image URLs
+  model3dType         String?                // "dragon", "lamp", "nameplate", "vase", "gear", "planter", etc.
+  categoryId          String
+  category            Category               @relation(fields: [categoryId], references: [id])
+  isAvailable         Boolean                @default(true)
+  isFeatured          Boolean                @default(false)
+  leadTimeDays        Int                    @default(3)
+  materials           String                 // JSON array
+  colors              String                 // JSON array
+  dimensions          String?
+  weight              String?
+  customizationFields String                 // JSON array of field configurations
+  createdAt           DateTime               @default(now())
+  updatedAt           DateTime               @updatedAt
+
+  reviews             Review[]
+  cartItems           CartItem[]
+  orderItems          OrderItem[]
+  customizationRequests CustomizationRequest[]
+}
+
+model CartItem {
+  id                 String   @id @default(cuid())
+  userId             String?
+  user               User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  guestSessionId     String?
+  productId          String
+  product            Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  quantity           Int      @default(1)
+  customizationData  String   // JSON string of selected options
+  unitPrice          Float
+  customizationPrice Float    @default(0)
+  totalPrice         Float
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model CustomizationRequest {
+  id                   String   @id @default(cuid())
+  referenceNumber      String   @unique
+  userId               String?
+  user                 User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  customerName         String
+  customerEmail        String
+  customerPhone        String?
+  productId            String?
+  product              Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+  productTitle         String
+  customizationDetails String   // JSON string of user inputs
+  customerInstructions String?
+  referenceFileUrl     String?
+  quantity             Int      @default(1)
+  estimatedPrice       Float?
+  finalQuote           Float?
+  status               String   @default("NEW_REQUEST") // NEW_REQUEST, UNDER_REVIEW, AWAITING_CUSTOMER, QUOTE_SENT, APPROVED, REJECTED, CONVERTED_TO_ORDER
+  adminNotes           String?
+  adminResponse        String?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  orders               Order[]
+}
+
+model Order {
+  id                     String                @id @default(cuid())
+  orderNumber            String                @unique
+  userId                 String?
+  user                   User?                 @relation(fields: [userId], references: [id], onDelete: SetNull)
+  customerName           String
+  customerEmail          String
+  customerPhone          String
+  shippingAddress        String
+  city                   String
+  postalCode             String
+  state                  String
+  customizationRequestId String?
+  customizationRequest   CustomizationRequest? @relation(fields: [customizationRequestId], references: [id], onDelete: SetNull)
+  subtotal               Float
+  shippingFee            Float                 @default(0)
+  totalAmount            Float
+  paymentMethod          String                @default("STUDIO_CONFIRMATION") // DIRECT_UPI, CASH_ON_DELIVERY, STUDIO_CONFIRMATION
+  paymentStatus          String                @default("PENDING") // PENDING, PAID, REFUNDED
+  productionStatus       String                @default("ORDER_RECEIVED") // ORDER_RECEIVED, CONFIRMED, IN_PRODUCTION, QUALITY_CHECK, READY_FOR_DISPATCH, SHIPPED, DELIVERED, CANCELLED
+  trackingNumber         String?
+  courier                String?
+  customerNotes          String?
+  adminNotes             String?
+  createdAt              DateTime              @default(now())
+  updatedAt              DateTime              @updatedAt
+
+  items                  OrderItem[]
+}
+
+model OrderItem {
+  id                   String   @id @default(cuid())
+  orderId              String
+  order                Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId            String?
+  product              Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+  productName          String
+  productImage         String?
+  unitPrice            Float
+  customizationPrice   Float    @default(0)
+  quantity             Int      @default(1)
+  totalPrice           Float
+  customizationDetails String   // JSON string
+}
+
+model Review {
+  id                 String   @id @default(cuid())
+  productId          String
+  product            Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  userId             String?
+  user               User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  authorName         String
+  rating             Int      @default(5)
+  reviewText         String
+  imageUrl           String?
+  isPublished        Boolean  @default(true)
+  isVerifiedPurchase Boolean  @default(true)
+  createdAt          DateTime @default(now())
+}
+
+model CustomerMessage {
+  id          String   @id @default(cuid())
+  userId      String?
+  user        User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  name        String
+  email       String
+  phone       String?
+  subject     String
+  message     String
+  status      String   @default("UNREAD") // UNREAD, REPLIED, ARCHIVED
+  adminReply  String?
+  createdAt   DateTime @default(now())
+}
+
+model WebsiteSetting {
+  key       String   @id
+  value     String   // JSON string
+  updatedAt DateTime @updatedAt
+}
