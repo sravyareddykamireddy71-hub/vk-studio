@@ -38,7 +38,7 @@ export default function CustomizationForm({ product }: CustomizationFormProps) {
     try {
       return JSON.parse(product.materials || '[]');
     } catch {
-      return ['Matte Architectural PLA', 'Ultra-Detail SLA Resin'];
+      return ['Matte High-Quality PLA', 'Durable Tough PETG Filament'];
     }
   }, [product.materials]);
 

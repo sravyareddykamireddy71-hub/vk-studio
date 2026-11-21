@@ -75,7 +75,7 @@ export default async function AdminDashboardPage() {
 
   const metrics = [
     {
-      label: 'Gross Studio Revenue',
+      label: 'Total Revenue',
       value: `₹${data.totalRevenue.toLocaleString('en-IN')}`,
       sub: 'All confirmed orders',
       icon: DollarSign,
@@ -84,35 +84,35 @@ export default async function AdminDashboardPage() {
     {
       label: 'Total Orders',
       value: data.totalOrdersCount,
-      sub: 'Lifecycle tracked',
+      sub: 'Customer orders',
       icon: ShoppingBag,
       color: 'text-blue-400 bg-blue-500/10 border-blue-500/20',
     },
     {
-      label: 'Active 3D Production',
+      label: 'Currently 3D Printing',
       value: data.inProductionCount,
-      sub: 'Currently printing / curing',
+      sub: 'Prints in progress',
       icon: Clock,
       color: 'text-amber-400 bg-amber-500/10 border-amber-500/20',
     },
     {
-      label: 'Pending Custom Quotes',
+      label: 'Custom Quote Requests',
       value: data.pendingRequestsCount,
-      sub: 'Awaiting CAD review',
+      sub: 'Customer custom ideas',
       icon: Sparkles,
       color: 'text-purple-400 bg-purple-500/10 border-purple-500/20',
     },
     {
-      label: 'Catalog Products',
+      label: '3D Products in Shop',
       value: data.totalProducts,
-      sub: 'Active 3D designs',
+      sub: 'Active catalog items',
       icon: Box,
       color: 'text-teal-400 bg-teal-500/10 border-teal-500/20',
     },
     {
-      label: 'Registered Customers',
+      label: 'Customers',
       value: data.totalCustomers,
-      sub: 'Studio patrons',
+      sub: 'Registered accounts',
       icon: Users,
       color: 'text-zinc-300 bg-white/5 border-white/10',
     },
@@ -120,31 +120,48 @@ export default async function AdminDashboardPage() {
 
   return (
     <div className="space-y-8">
-      {/* Overview Title & Quick Actions */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="font-display font-black text-2xl text-white tracking-tight">
-            Studio Command Dashboard
-          </h1>
-          <p className="text-xs text-zinc-400 mt-0.5">
-            Real-time status of 3D printing orders, bespoke customization requests, and inventory.
-          </p>
+      {/* Brand Hero Card with Floating Logo & Saying */}
+      <div className="rounded-3xl bg-gradient-to-r from-zinc-950 via-studio-card to-zinc-950 border border-white/10 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-premium relative overflow-hidden">
+        <div className="flex items-center gap-5">
+          {/* Floating Logo */}
+          <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-2xl p-1.5 bg-black border-2 border-white/20 shadow-premium flex-shrink-0 animate-float-subtle">
+            <img
+              src="/images/logo.jpg"
+              alt="VK STUDIO - Vamsi Krishna"
+              className="w-full h-full object-cover rounded-xl"
+            />
+          </div>
+
+          <div className="space-y-1">
+            <span className="text-[11px] font-mono tracking-widest text-lime-400 font-bold uppercase block">
+              VK STUDIO • ADMIN WORKSPACE
+            </span>
+            <h1 className="font-display font-black text-2xl md:text-3xl text-white tracking-tight">
+              Your Imagination,{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 to-emerald-300">
+                My Creation
+              </span>
+            </h1>
+            <p className="text-xs text-zinc-400">
+              Welcome back, Vamsi Krishna. Manage 3D printed products, track printing orders, and respond to custom design requests.
+            </p>
+          </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-3 flex-shrink-0">
           <Link
             href="/admin/products/new"
-            className="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold text-xs flex items-center gap-1.5 shadow-subtle transition-all"
+            className="px-4 py-2.5 rounded-xl bg-lime-500 hover:bg-lime-400 text-black font-extrabold text-xs flex items-center gap-1.5 shadow-subtle hover:shadow-glow hover:-translate-y-0.5 transition-all"
           >
-            <Box className="w-3.5 h-3.5" />
+            <Box className="w-4 h-4" />
             <span>+ Add New Product</span>
           </Link>
           <Link
             href="/admin/requests"
-            className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-zinc-200 border border-white/10 font-medium text-xs flex items-center gap-1.5"
+            className="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white border border-white/15 font-semibold text-xs flex items-center gap-1.5 hover:-translate-y-0.5 transition-all"
           >
-            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            <span>Review CAD Requests</span>
+            <Sparkles className="w-4 h-4 text-lime-400" />
+            <span>Review Custom Requests</span>
           </Link>
         </div>
       </div>

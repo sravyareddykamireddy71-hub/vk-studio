@@ -207,8 +207,8 @@ export default function Footer() {
               <Layers className="w-4 h-4" />
             </div>
             <div>
-              <p className="font-semibold text-white text-xs">50µ Layer Precision</p>
-              <p className="text-[10px] text-zinc-500">Fine micro-step tolerances</p>
+              <p className="font-semibold text-white text-xs">Smooth 3D Print Finish</p>
+              <p className="text-[10px] text-zinc-500">Crisp, clean micro-layers</p>
             </div>
           </div>
 
@@ -217,8 +217,8 @@ export default function Footer() {
               <Sparkles className="w-4 h-4" />
             </div>
             <div>
-              <p className="font-semibold text-white text-xs">Custom Bespoke CAD</p>
-              <p className="text-[10px] text-zinc-500">Bespoke dimensions & names</p>
+              <p className="font-semibold text-white text-xs">Personalized For You</p>
+              <p className="text-[10px] text-zinc-500">Your name, colors & size</p>
             </div>
           </div>
 
@@ -227,8 +227,8 @@ export default function Footer() {
               <ShieldCheck className="w-4 h-4" />
             </div>
             <div>
-              <p className="font-semibold text-white text-xs">Industrial Filaments</p>
-              <p className="text-[10px] text-zinc-500">PLA, PETG, Resin & Carbon</p>
+              <p className="font-semibold text-white text-xs">100% 3D Printed</p>
+              <p className="text-[10px] text-zinc-500">Premium PLA & Tough PETG</p>
             </div>
           </div>
 
@@ -237,8 +237,8 @@ export default function Footer() {
               <Cpu className="w-4 h-4" />
             </div>
             <div>
-              <p className="font-semibold text-white text-xs">Made-to-Order Studio</p>
-              <p className="text-[10px] text-zinc-500">Freshly sliced & cured</p>
+              <p className="font-semibold text-white text-xs">Made Just For You</p>
+              <p className="text-[10px] text-zinc-500">Printed fresh upon order</p>
             </div>
           </div>
         </div>

@@ -265,7 +265,7 @@ export default function CustomQuotePage() {
               >
                 <option value="Matte Engineering PLA">Matte Architectural PLA</option>
                 <option value="Carbon Fiber Reinforced PETG">Carbon Fiber Reinforced PETG</option>
-                <option value="High-Detail SLA Resin (8K)">High-Detail SLA Photopolymer Resin (8K)</option>
+                <option value="High-Detail Tough PLA+">High-Detail Tough PLA+ (Clean Micro-Layers)</option>
                 <option value="Silk Co-Extrusion PLA">Silk Dual-Color Co-Extrusion PLA</option>
                 <option value="Pine Wood Fiber Composite">Natural Wood-Fiber Composite</option>
                 <option value="Flexible 95A TPU">Impact-Resistant Flexible TPU (95A)</option>

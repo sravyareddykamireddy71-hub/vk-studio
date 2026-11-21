@@ -2,31 +2,31 @@ import { StudioSettings } from './types';
 
 export const DEFAULT_SETTINGS: StudioSettings = {
   brandName: 'VK STUDIO',
-  tagline: 'Premium 3D Printing & Bespoke Customization Studio by Vamsi Krishna',
-  heroHeadline: 'Your Imagination. Our Creation.',
-  heroSubheadline: 'Discover thoughtfully engineered 3D-printed masterpieces or bring your bespoke ideas to life with state-of-the-art precision customization from VK STUDIO by Vamsi Krishna.',
-  heroBadge: 'Precision FDM & SLA Resin Fabrication',
-  aboutTitle: 'Craftsmanship Meets High-Precision Additive Manufacturing',
-  aboutDescription: 'VK STUDIO was founded by Vamsi Krishna with a single mission: bridging bespoke artisanal design with industrial-grade 3D printing technology. Every piece is carefully sliced, monitored across hundreds of micro-layers, hand-finished, and curated to perfection in our studio.',
+  tagline: 'Custom 3D Printing & Personalized Gifts by Vamsi Krishna',
+  heroHeadline: 'Your Imagination, My Creation',
+  heroSubheadline: 'Turn your ideas, names, and custom designs into real 3D printed items you can hold. From personalized nameplates and keychains to desk accessories and unique gifts.',
+  heroBadge: '100% Custom 3D Printing & Personalized Gifts',
+  aboutTitle: 'Personalized 3D Printing Done Right',
+  aboutDescription: 'VK STUDIO is a specialized 3D printing workshop run by Vamsi Krishna. We focus 100% on high-quality 3D printed products and bespoke custom designs. Every single piece is 3D printed layer-by-layer using premium, durable filaments made to last.',
   aboutPillars: [
     {
-      title: 'Precision Layer Quality',
-      desc: 'Sub-50 micron layer resolution utilizing aerospace-grade engineering filaments and ultra-high-definition DLP resins.',
+      title: 'Crisp 3D Print Quality',
+      desc: 'Clean, smooth layers printed with strong, eco-friendly PLA and PETG filaments.',
       icon: 'Layers'
     },
     {
-      title: 'Tailored Customization',
-      desc: 'From custom typography to structural CAD alterations, every order is tailored to exact client specifications.',
+      title: 'Custom Names & Colors',
+      desc: 'Add your own text, choose your favorite colors, and preview sizes easily.',
       icon: 'Sliders'
     },
     {
-      title: 'Sustainable Polymers',
-      desc: 'Eco-conscious bioplastics, reinforced carbon-fiber filaments, and durable architectural compounds.',
+      title: 'Pure 3D Printing',
+      desc: 'We specialize strictly in authentic 3D printed creations — zero resin crafts or generic molds.',
       icon: 'ShieldCheck'
     },
     {
-      title: 'Direct Artisan Dialogue',
-      desc: 'Live consultation and order refinement directly via our studio WhatsApp workbench for immediate feedback.',
+      title: 'WhatsApp Direct Chat',
+      desc: 'Direct conversation with Vamsi Krishna on WhatsApp for orders, previews, and fast support.',
       icon: 'MessageSquare'
     }
   ],

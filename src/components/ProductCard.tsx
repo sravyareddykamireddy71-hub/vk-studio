@@ -21,7 +21,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const secondaryImage = images[1] || primaryImage;
 
   return (
-    <div className="group relative rounded-2xl bg-studio-surface border border-white/10 hover:border-amber-500/40 shadow-subtle hover:shadow-premium transition-all duration-300 flex flex-col overflow-hidden">
+    <div className="group relative rounded-2xl bg-studio-surface border border-white/10 hover:border-lime-400/50 shadow-subtle hover:shadow-glow transition-all duration-300 hover:-translate-y-1.5 flex flex-col overflow-hidden">
       {/* Product Image Container */}
       <Link href={`/products/${product.slug}`} className="relative aspect-[4/3] w-full overflow-hidden bg-black/40 block">
         <img
@@ -47,7 +47,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         {/* Availability / Lead Time Pill */}
         <div className="absolute top-3 right-3 px-2 py-1 rounded-lg bg-black/70 backdrop-blur-md border border-white/10 text-[10px] font-mono text-zinc-300 flex items-center gap-1">
           <Clock className="w-3 h-3 text-amber-400" />
-          <span>{product.leadTimeDays}d Slicing</span>
+          <span>{product.leadTimeDays}d Print Time</span>
         </div>
 
         {/* Bottom subtle gradient */}

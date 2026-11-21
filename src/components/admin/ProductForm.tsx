@@ -55,7 +55,7 @@ export default function ProductForm({ initialProduct, isEditing = false }: Produ
   // Materials & Colors
   const [materials, setMaterials] = useState<string[]>(() => {
     try {
-      return initialProduct?.materials ? JSON.parse(initialProduct.materials) : ['Matte Architectural PLA', 'Ultra-Detail SLA Resin'];
+      return initialProduct?.materials ? JSON.parse(initialProduct.materials) : ['Matte High-Quality PLA', 'Durable Tough PETG'];
     } catch {
       return ['Matte Architectural PLA'];
     }
@@ -375,7 +375,7 @@ export default function ProductForm({ initialProduct, isEditing = false }: Produ
               <option value="nameplate">Architectural Slab Nameplate</option>
               <option value="stand">Ergonomic Docking Stand</option>
               <option value="planter">Parametric Faceted Planter</option>
-              <option value="keycap">Resin Artisan Keycap</option>
+              <option value="keycap">3D Printed Custom Keycap</option>
             </select>
           </div>
 

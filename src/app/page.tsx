@@ -9,12 +9,12 @@ import {
   MessageSquare,
   Clock,
   Star,
-  Cpu,
-  Compass,
   CheckCircle2,
   Box,
   Palette,
-  Terminal,
+  Truck,
+  Heart,
+  HelpCircle,
 } from 'lucide-react';
 import prisma from '@/lib/prisma';
 import ProductCard from '@/components/ProductCard';
@@ -83,113 +83,181 @@ export default async function HomePage() {
 
   return (
     <div className="space-y-24 md:space-y-32 pb-24">
-      {/* 1. HERO SECTION */}
-      <section className="relative pt-6 md:pt-12 overflow-hidden">
-        {/* Background ambient lighting */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-amber-600/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute top-20 right-10 w-96 h-96 bg-blue-600/5 rounded-full blur-[140px] pointer-events-none" />
+      {/* ============================================================== */}
+      {/* 1. HERO SECTION: EXCLUSIVE FLOATING LOGO & SIGNATURE SAYING     */}
+      {/* ============================================================== */}
+      <section className="relative pt-10 md:pt-20 overflow-hidden text-center">
+        {/* Ambient Glows */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[450px] bg-lime-500/10 rounded-full blur-[140px] pointer-events-none animate-glow-pulse" />
+        <div className="absolute top-10 right-1/4 w-80 h-80 bg-emerald-500/10 rounded-full blur-[130px] pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            {/* Left Hero Content */}
-            <div className="lg:col-span-7 space-y-6 text-left">
-              {/* Studio Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono tracking-wide text-zinc-300">
-                <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
-                <span>{settings.heroBadge || 'Precision FDM & SLA Resin Fabrication'}</span>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 relative z-10">
+          {/* Subtle Top Pill */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono tracking-wider text-lime-400 uppercase font-semibold shadow-subtle">
+            <span className="w-2 h-2 rounded-full bg-lime-400 animate-pulse" />
+            <span>VK STUDIO • BY VAMSI KRISHNA</span>
+          </div>
+
+          {/* Exclusive Floating Official Logo */}
+          <div className="flex justify-center items-center py-2">
+            <div className="relative group">
+              {/* Backlight Glow */}
+              <div className="absolute inset-0 rounded-3xl bg-lime-400/20 blur-2xl group-hover:bg-lime-400/30 transition-all duration-500" />
+              
+              {/* Floating Logo Container */}
+              <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-3xl p-3 bg-black/90 border-2 border-white/20 hover:border-lime-400 shadow-premium animate-float hover-lift">
+                <img
+                  src="/images/logo.jpg"
+                  alt="VK STUDIO - Vamsi Krishna"
+                  className="w-full h-full object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Signature Saying */}
+          <div className="space-y-4 max-w-3xl mx-auto">
+            <h1 className="font-display font-black text-4xl sm:text-6xl lg:text-7xl tracking-tight text-white leading-[1.08]">
+              Your Imagination,{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 via-emerald-300 to-lime-500">
+                My Creation
+              </span>
+            </h1>
+
+            <p className="text-zinc-300 text-base sm:text-lg leading-relaxed font-normal max-w-2xl mx-auto">
+              Turn your names, ideas, and favorite designs into high-quality 3D printed items you can hold. We specialize strictly in custom 3D printing — made with care and shipped right to your door.
+            </p>
+          </div>
+
+          {/* Main Action Buttons */}
+          <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+            <Link
+              href="#products"
+              className="px-8 py-4 rounded-2xl bg-lime-500 hover:bg-lime-400 text-black font-extrabold text-sm tracking-wide shadow-subtle hover:shadow-glow hover:-translate-y-1 transition-all flex items-center gap-2 group"
+            >
+              <span>Explore 3D Products</span>
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+
+            <Link
+              href="/custom-quote"
+              className="px-8 py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/15 hover:border-lime-400/60 text-white font-bold text-sm hover:-translate-y-1 transition-all flex items-center gap-2"
+            >
+              <Sparkles className="w-4 h-4 text-lime-400" />
+              <span>Request Custom 3D Design</span>
+            </Link>
+
+            <a
+              href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+                'Hi Vamsi Krishna! I visited VK STUDIO and would like to order a custom 3D printed item.'
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-4 rounded-2xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 font-bold text-sm hover:-translate-y-1 transition-all flex items-center gap-2"
+            >
+              <MessageSquare className="w-4 h-4 text-emerald-400" />
+              <span>WhatsApp Chat</span>
+            </a>
+          </div>
+
+          {/* 4 Customer Confidence Badges (Simple Terminology) */}
+          <div className="pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
+            <div className="p-4 rounded-2xl bg-studio-surface border border-white/10 hover-lift">
+              <div className="flex items-center gap-2 text-lime-400 font-bold text-xs mb-1">
+                <Box className="w-4 h-4" />
+                <span>100% 3D Printed</span>
+              </div>
+              <p className="text-[11px] text-zinc-400 leading-normal">
+                Authentic layer-by-layer 3D prints using strong, durable filaments. No resin crafts or mold plastics.
+              </p>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-studio-surface border border-white/10 hover-lift">
+              <div className="flex items-center gap-2 text-lime-400 font-bold text-xs mb-1">
+                <Sliders className="w-4 h-4" />
+                <span>Personalized For You</span>
+              </div>
+              <p className="text-[11px] text-zinc-400 leading-normal">
+                Add your name, choose your favorite colors, and select custom dimensions easily.
+              </p>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-studio-surface border border-white/10 hover-lift">
+              <div className="flex items-center gap-2 text-lime-400 font-bold text-xs mb-1">
+                <MessageSquare className="w-4 h-4" />
+                <span>Direct WhatsApp Updates</span>
+              </div>
+              <p className="text-[11px] text-zinc-400 leading-normal">
+                Direct chat with Vamsi Krishna on WhatsApp for previews, photos, and answers.
+              </p>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-studio-surface border border-white/10 hover-lift">
+              <div className="flex items-center gap-2 text-lime-400 font-bold text-xs mb-1">
+                <Truck className="w-4 h-4" />
+                <span>Safe Doorstep Delivery</span>
+              </div>
+              <p className="text-[11px] text-zinc-400 leading-normal">
+                Carefully cushioned and shipped safely to your home anywhere across India.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================== */}
+      {/* 2. INTERACTIVE 3D CAD VIEWER DEMO                              */}
+      {/* ============================================================== */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="rounded-3xl bg-studio-surface border border-white/10 p-6 sm:p-10 shadow-premium relative overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-5 space-y-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-400/10 border border-lime-400/20 text-xs font-mono text-lime-400">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Interactive 3D Preview</span>
               </div>
 
-              {/* Headline */}
-              <h1 className="font-display font-black text-4xl sm:text-5xl lg:text-6xl tracking-tight text-white leading-[1.1]">
-                Your Imagination.{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-amber-500">
-                  Our Creation.
-                </span>
-              </h1>
+              <h2 className="font-display font-black text-2xl sm:text-3xl text-white tracking-tight">
+                Inspect Your Prints in Full 3D
+              </h2>
 
-              {/* Subheadline */}
-              <p className="text-zinc-300 text-base sm:text-lg leading-relaxed max-w-2xl font-light">
-                {settings.heroSubheadline ||
-                  'Discover thoughtfully designed 3D-printed products or bring your own ideas to life with personalized creations from VK STUDIO.'}
+              <p className="text-zinc-300 text-sm leading-relaxed">
+                Before we 3D print your item, test and preview it right on your screen. Drag to spin the model around, toggle wireframe layers, and change filament colors live!
               </p>
 
-              {/* CTAs */}
-              <div className="flex flex-wrap items-center gap-4 pt-2">
+              <div className="pt-2">
                 <Link
                   href="/products"
-                  className="px-6 py-3.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-sm tracking-wide shadow-subtle hover:shadow-glow transition-all flex items-center gap-2 group"
+                  className="inline-flex items-center gap-2 text-xs font-bold text-lime-400 hover:text-lime-300 transition-colors"
                 >
-                  <span>Explore Collection</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  <span>Customize any product in 3D</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
-
-                <Link
-                  href="/custom-quote"
-                  className="px-6 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 hover:border-amber-500/50 text-white font-medium text-sm transition-all flex items-center gap-2"
-                >
-                  <Sparkles className="w-4 h-4 text-amber-400" />
-                  <span>Create Your Own</span>
-                </Link>
-              </div>
-
-              {/* Studio Metrics Highlights */}
-              <div className="pt-8 border-t border-white/10 grid grid-cols-3 gap-6 text-left">
-                <div>
-                  <p className="font-mono text-2xl font-black text-white">50µm</p>
-                  <p className="text-[11px] text-zinc-400 font-mono uppercase tracking-wider mt-0.5">
-                    Layer Resolution
-                  </p>
-                </div>
-                <div>
-                  <p className="font-mono text-2xl font-black text-amber-400">100%</p>
-                  <p className="text-[11px] text-zinc-400 font-mono uppercase tracking-wider mt-0.5">
-                    Made-To-Order
-                  </p>
-                </div>
-                <div>
-                  <p className="font-mono text-2xl font-black text-white">4.9★</p>
-                  <p className="text-[11px] text-zinc-400 font-mono uppercase tracking-wider mt-0.5">
-                    Client Satisfaction
-                  </p>
-                </div>
               </div>
             </div>
 
-            {/* Right Hero: Interactive 3D Canvas Preview */}
-            <div className="lg:col-span-5 relative">
-              <div className="relative mx-auto w-full max-w-md lg:max-w-none">
-                {/* Visual Glass Frame */}
-                <div className="relative rounded-3xl p-2 bg-gradient-to-b from-white/10 via-white/5 to-transparent border border-white/15 shadow-premium">
-                  <ThreeCanvas modelType="dragon" colorHex="#C5A880" />
-                </div>
-
-                {/* Micro Floating Badges */}
-                <div className="absolute -top-3 -left-3 px-3 py-1.5 rounded-xl bg-studio-card/90 backdrop-blur-md border border-white/15 text-[11px] font-mono text-amber-400 shadow-lg flex items-center gap-1.5">
-                  <Terminal className="w-3.5 h-3.5" />
-                  <span>Dual Co-Extrusion Active</span>
-                </div>
-
-                <div className="absolute -bottom-3 -right-3 px-3 py-1.5 rounded-xl bg-studio-card/90 backdrop-blur-md border border-white/15 text-[11px] font-mono text-emerald-400 shadow-lg flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>Real-time Interactive 3D</span>
-                </div>
+            <div className="lg:col-span-7">
+              <div className="relative rounded-2xl p-2 bg-black/60 border border-white/15 shadow-subtle">
+                <ThreeCanvas modelType="dragon" colorHex="#a3e635" />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. CATEGORIES SECTION */}
+      {/* ============================================================== */}
+      {/* 3. POPULAR 3D PRINTED CATEGORIES                               */}
+      {/* ============================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto space-y-2 mb-12">
-          <p className="text-xs font-mono uppercase tracking-widest text-amber-500 font-bold">
-            Precision Fabrication Disciplines
+        <div className="text-center max-w-2xl mx-auto space-y-2 mb-10">
+          <p className="text-xs font-mono uppercase tracking-widest text-lime-400 font-bold">
+            What We 3D Print
           </p>
           <h2 className="font-display font-black text-3xl sm:text-4xl text-white tracking-tight">
-            Curated 3D Product Categories
+            Popular 3D Printed Products
           </h2>
           <p className="text-zinc-400 text-sm">
-            From kinetic sculptures and ambient shadow fixtures to architectural signage and daily desk companions.
+            Everything is 3D printed with strong, vibrant filaments. Pick a category to browse:
           </p>
         </div>
 
@@ -198,13 +266,13 @@ export default async function HomePage() {
             <Link
               key={cat.id}
               href={`/products?category=${cat.slug}`}
-              className="p-5 rounded-2xl bg-studio-surface border border-white/10 hover:border-amber-500/50 hover:bg-white/5 transition-all duration-300 text-center flex flex-col items-center justify-center space-y-3 group shadow-subtle"
+              className="p-5 rounded-2xl bg-studio-surface border border-white/10 hover:border-lime-400/50 hover:bg-white/5 transition-all duration-300 text-center flex flex-col items-center justify-center space-y-3 group shadow-subtle hover-lift"
             >
-              <div className="w-12 h-12 rounded-xl bg-white/5 group-hover:bg-amber-500/20 text-zinc-300 group-hover:text-amber-400 border border-white/10 group-hover:border-amber-500/30 flex items-center justify-center transition-all">
+              <div className="w-12 h-12 rounded-xl bg-white/5 group-hover:bg-lime-500/20 text-zinc-300 group-hover:text-lime-400 border border-white/10 group-hover:border-lime-400/40 flex items-center justify-center transition-all">
                 <Box className="w-6 h-6 transition-transform group-hover:scale-110" />
               </div>
               <div>
-                <h3 className="font-semibold text-xs text-white group-hover:text-amber-400 transition-colors">
+                <h3 className="font-semibold text-xs text-white group-hover:text-lime-400 transition-colors">
                   {cat.name}
                 </h3>
                 <span className="text-[10px] font-mono text-zinc-500 mt-1 block">
@@ -216,20 +284,22 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 3. FEATURED PRODUCTS COLLECTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ============================================================== */}
+      {/* 4. FEATURED PRODUCTS COLLECTION                                */}
+      {/* ============================================================== */}
+      <section id="products" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
           <div>
-            <p className="text-xs font-mono uppercase tracking-widest text-amber-500 font-bold">
-              Signature Works
+            <p className="text-xs font-mono uppercase tracking-widest text-lime-400 font-bold">
+              Customer Favorites
             </p>
             <h2 className="font-display font-black text-3xl sm:text-4xl text-white tracking-tight mt-1">
-              Featured Studio Creations
+              Featured 3D Printed Items
             </h2>
           </div>
           <Link
             href="/products"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-400 hover:text-amber-300 transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-lime-400 hover:text-lime-300 transition-colors"
           >
             <span>View All Available Products</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -243,113 +313,154 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 4. ABOUT VK STUDIO & CAPABILITIES */}
+      {/* ============================================================== */}
+      {/* 5. HOW IT WORKS (SUPER SIMPLE 3 STEPS)                         */}
+      {/* ============================================================== */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-xl mx-auto space-y-2 mb-12">
+          <p className="text-xs font-mono uppercase tracking-widest text-lime-400 font-bold">
+            Super Simple Process
+          </p>
+          <h2 className="font-display font-black text-3xl sm:text-4xl text-white tracking-tight">
+            How Custom 3D Printing Works
+          </h2>
+          <p className="text-zinc-400 text-sm">
+            Ordering a personalized 3D print is fast and easy:
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="p-6 rounded-3xl bg-studio-surface border border-white/10 space-y-4 hover-lift">
+            <div className="w-12 h-12 rounded-2xl bg-lime-400/10 text-lime-400 font-mono font-bold text-lg flex items-center justify-center border border-lime-400/20">
+              01
+            </div>
+            <h3 className="font-bold text-base text-white">Pick or Share an Idea</h3>
+            <p className="text-xs text-zinc-400 leading-relaxed">
+              Choose an existing design from our shop, or send us your own photo, sketch, or 3D file on WhatsApp.
+            </p>
+          </div>
+
+          <div className="p-6 rounded-3xl bg-studio-surface border border-white/10 space-y-4 hover-lift">
+            <div className="w-12 h-12 rounded-2xl bg-lime-400/10 text-lime-400 font-mono font-bold text-lg flex items-center justify-center border border-lime-400/20">
+              02
+            </div>
+            <h3 className="font-bold text-base text-white">Choose Colors & Add Your Text</h3>
+            <p className="text-xs text-zinc-400 leading-relaxed">
+              Personalize with your name, pick filament colors, and select your size. The price updates live on your screen.
+            </p>
+          </div>
+
+          <div className="p-6 rounded-3xl bg-studio-surface border border-white/10 space-y-4 hover-lift">
+            <div className="w-12 h-12 rounded-2xl bg-lime-400/10 text-lime-400 font-mono font-bold text-lg flex items-center justify-center border border-lime-400/20">
+              03
+            </div>
+            <h3 className="font-bold text-base text-white">We 3D Print It & Ship It</h3>
+            <p className="text-xs text-zinc-400 leading-relaxed">
+              We 3D print your piece layer-by-layer, perform a quality check, and ship it safely to your doorstep with live tracking.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================== */}
+      {/* 6. ABOUT VK STUDIO & VAMSI KRISHNA                             */}
+      {/* ============================================================== */}
       <section id="about" className="relative scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="rounded-3xl bg-studio-surface border border-white/10 p-8 sm:p-12 lg:p-16 relative overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-              <div className="lg:col-span-6 space-y-6">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-xs font-mono text-amber-400">
-                  <Layers className="w-3.5 h-3.5" />
-                  <span>About Our Studio</span>
+              <div className="lg:col-span-7 space-y-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-400/10 border border-lime-400/20 text-xs font-mono text-lime-400">
+                  <Heart className="w-3.5 h-3.5 text-lime-400" />
+                  <span>About VK STUDIO</span>
                 </div>
 
                 <h2 className="font-display font-black text-3xl sm:text-4xl text-white tracking-tight leading-tight">
-                  {settings.aboutTitle || 'Craftsmanship Meets High-Precision Additive Manufacturing'}
+                  Independent 3D Printing by Vamsi Krishna
                 </h2>
 
                 <p className="text-zinc-300 text-sm leading-relaxed font-light">
-                  {settings.aboutDescription ||
-                    'VK STUDIO was founded on a simple philosophy: bridging bespoke artisanal design with industrial-grade 3D printing technology. Every piece is carefully sliced, monitored across hundreds of micro-layers, hand-finished, and curated to perfection in our studio.'}
+                  Hi, I&apos;m Vamsi Krishna. I created <strong>VK STUDIO</strong> to make personalized 3D printing accessible and exciting for everyone.
+                </p>
+
+                <p className="text-zinc-300 text-sm leading-relaxed font-light">
+                  <strong>We focus exclusively on 3D printed products.</strong> We do not do resin arts, epoxy crafts, or cheap mold casting. Every single product is individually 3D printed on high-precision 3D printers using strong, eco-friendly PLA and PETG filaments that last for years.
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                   <div className="p-4 rounded-xl bg-white/5 border border-white/5 space-y-1">
                     <h4 className="font-bold text-white text-xs flex items-center gap-2">
-                      <Cpu className="w-4 h-4 text-amber-400" />
-                      Industrial Hardware
+                      <Palette className="w-4 h-4 text-lime-400" />
+                      Vibrant Filament Colors
                     </h4>
                     <p className="text-[11px] text-zinc-400 leading-normal">
-                      Multi-material high-flow hotends capable of reinforced Carbon Fiber & TPU.
+                      Silk glossy gold, matte black, marble finish, and dual-tone filaments.
                     </p>
                   </div>
 
                   <div className="p-4 rounded-xl bg-white/5 border border-white/5 space-y-1">
                     <h4 className="font-bold text-white text-xs flex items-center gap-2">
-                      <Palette className="w-4 h-4 text-amber-400" />
-                      Artisanal Palette
+                      <ShieldCheck className="w-4 h-4 text-lime-400" />
+                      Clean & Durable
                     </h4>
                     <p className="text-[11px] text-zinc-400 leading-normal">
-                      Dual-tone silk co-extrusion, matte basalt, stone-fill composites & 24K leaf flakes.
+                      High-strength layer adhesion so your items are lightweight yet tough.
                     </p>
                   </div>
                 </div>
 
-                <div className="pt-2">
+                <div className="pt-2 flex flex-wrap gap-3">
                   <Link
                     href="/custom-quote"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold text-xs shadow-subtle transition-all"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-lime-500 hover:bg-lime-400 text-black font-extrabold text-xs shadow-subtle transition-all"
                   >
-                    <span>Request Custom Commission</span>
+                    <span>Request Custom 3D Design</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
+
+                  <a
+                    href="https://instagram.com/vk_studi_o"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white font-semibold text-xs border border-white/10 transition-all"
+                  >
+                    <span>Follow @vk_studi_o on Instagram</span>
+                  </a>
                 </div>
               </div>
 
-              {/* Right Side: Studio Workflow Visualization */}
-              <div className="lg:col-span-6 space-y-4">
-                <div className="p-6 rounded-2xl bg-black/50 border border-white/10 space-y-4">
-                  <p className="text-xs font-mono uppercase tracking-wider text-amber-400 font-bold">
-                    The VK STUDIO Fabrication Standard
-                  </p>
+              {/* Right Side: Visual Showcase Card */}
+              <div className="lg:col-span-5 flex justify-center">
+                <div className="w-full max-w-sm rounded-3xl p-6 bg-black/60 border border-white/15 space-y-4 text-center">
+                  <div className="w-28 h-28 rounded-2xl overflow-hidden border border-white/20 mx-auto shadow-premium bg-black animate-float-subtle">
+                    <img
+                      src="/images/logo.jpg"
+                      alt="VK STUDIO - Vamsi Krishna"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
 
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-3">
-                      <div className="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-400 font-mono font-bold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
-                        01
-                      </div>
-                      <div>
-                        <h4 className="text-xs font-bold text-white">Algorithmic CAD & Slicing</h4>
-                        <p className="text-[11px] text-zinc-400 mt-0.5">
-                          Adaptive layer heights from 0.08mm to 0.2mm to preserve microscopic contours while optimizing structural shear strength.
-                        </p>
-                      </div>
+                  <div>
+                    <h3 className="font-display font-black text-lg text-white">VK STUDIO</h3>
+                    <p className="text-xs text-lime-400 font-mono">Your Imagination, My Creation</p>
+                  </div>
+
+                  <div className="text-xs text-zinc-400 border-t border-white/10 pt-3 text-left space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span>Founder / Maker:</span>
+                      <strong className="text-white">Vamsi Krishna</strong>
                     </div>
-
-                    <div className="flex items-start gap-3">
-                      <div className="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-400 font-mono font-bold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
-                        02
-                      </div>
-                      <div>
-                        <h4 className="text-xs font-bold text-white">Precision Chamber Fabrication</h4>
-                        <p className="text-[11px] text-zinc-400 mt-0.5">
-                          Enclosed chamber printing eliminates layer delamination, warping, and ambient drafts for airtight structural integrity.
-                        </p>
-                      </div>
+                    <div className="flex items-center justify-between">
+                      <span>Specialization:</span>
+                      <strong className="text-lime-400">Custom 3D Printing</strong>
                     </div>
-
-                    <div className="flex items-start gap-3">
-                      <div className="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-400 font-mono font-bold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
-                        03
-                      </div>
-                      <div>
-                        <h4 className="text-xs font-bold text-white">Manual Post-Processing & Curing</h4>
-                        <p className="text-[11px] text-zinc-400 mt-0.5">
-                          Support artifacts micro-trimmed, surfaces vapor-smoothed or hand-sanded, and UV resin prints post-cured at 405nm.
-                        </p>
-                      </div>
+                    <div className="flex items-center justify-between">
+                      <span>WhatsApp Direct:</span>
+                      <strong className="text-white">+91 91004 84870</strong>
                     </div>
-
-                    <div className="flex items-start gap-3">
-                      <div className="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-400 font-mono font-bold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
-                        04
-                      </div>
-                      <div>
-                        <h4 className="text-xs font-bold text-white">Direct Artisan Dialogue</h4>
-                        <p className="text-[11px] text-zinc-400 mt-0.5">
-                          Direct WhatsApp confirmation with slicing screenshots and dispatch tracking prior to shipping.
-                        </p>
-                      </div>
+                    <div className="flex items-center justify-between">
+                      <span>Instagram:</span>
+                      <strong className="text-white">@vk_studi_o</strong>
                     </div>
                   </div>
                 </div>
@@ -359,17 +470,19 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 5. CLIENT REVIEWS SECTION */}
+      {/* ============================================================== */}
+      {/* 7. VERIFIED CUSTOMER REVIEWS                                   */}
+      {/* ============================================================== */}
       <section id="reviews" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
         <div className="text-center max-w-2xl mx-auto space-y-2 mb-12">
-          <p className="text-xs font-mono uppercase tracking-widest text-amber-500 font-bold">
-            Verified Feedback
+          <p className="text-xs font-mono uppercase tracking-widest text-lime-400 font-bold">
+            Customer Feedback
           </p>
           <h2 className="font-display font-black text-3xl sm:text-4xl text-white tracking-tight">
-            Client Impressions & Reviews
+            What Customers Say About VK STUDIO
           </h2>
           <p className="text-zinc-400 text-sm">
-            Genuine experiences from architects, collectors, gift-givers, and design enthusiasts.
+            Read real feedback from people who ordered custom 3D prints, nameplates, and gifts.
           </p>
         </div>
 
@@ -377,7 +490,7 @@ export default async function HomePage() {
           {reviews.map((rev) => (
             <div
               key={rev.id}
-              className="p-6 rounded-2xl bg-studio-surface border border-white/10 flex flex-col justify-between space-y-4 shadow-subtle hover:border-amber-500/30 transition-all"
+              className="p-6 rounded-2xl bg-studio-surface border border-white/10 flex flex-col justify-between space-y-4 shadow-subtle hover:border-lime-400/40 transition-all hover-lift"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
@@ -396,7 +509,7 @@ export default async function HomePage() {
                   {rev.isVerifiedPurchase && (
                     <span className="text-[10px] font-mono text-emerald-400 flex items-center gap-1">
                       <CheckCircle2 className="w-3 h-3" />
-                      Verified
+                      Verified Order
                     </span>
                   )}
                 </div>
@@ -412,7 +525,7 @@ export default async function HomePage() {
                   {rev.product && (
                     <Link
                       href={`/products/${rev.product.slug || rev.productId}`}
-                      className="text-[10px] text-amber-400 hover:underline block truncate max-w-[180px]"
+                      className="text-[10px] text-lime-400 hover:underline block truncate max-w-[180px]"
                     >
                       {rev.product.name}
                     </Link>
@@ -431,42 +544,46 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 6. WHATSAPP & CUSTOM COMMISSION CTA BANNER */}
+      {/* ============================================================== */}
+      {/* 8. WHATSAPP & CUSTOM 3D COMMISSION CALL TO ACTION               */}
+      {/* ============================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl bg-gradient-to-r from-amber-950/40 via-studio-card to-zinc-950 border border-amber-500/30 p-8 sm:p-12 text-center space-y-6 relative overflow-hidden shadow-premium">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="rounded-3xl bg-gradient-to-r from-zinc-950 via-studio-card to-zinc-950 border border-lime-400/30 p-8 sm:p-14 text-center space-y-6 relative overflow-hidden shadow-premium">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-lime-500/10 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-xs font-mono text-amber-400">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-lime-400/10 border border-lime-400/20 text-xs font-mono text-lime-400 font-bold">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Have a Specific STL or 3D Idea?</span>
+            <span>Have a Specific 3D Idea or Design?</span>
           </div>
 
           <div className="max-w-2xl mx-auto space-y-2">
             <h2 className="font-display font-black text-3xl sm:text-4xl text-white tracking-tight">
-              Bespoke Studio Commissions
+              Order Your Custom 3D Print Today
             </h2>
-            <p className="text-zinc-300 text-sm font-light">
-              Send us your custom 3D model files, sketches, or ideas. We offer CAD design services, rapid slicing estimates, and high-tolerance fabrication.
+            <p className="text-zinc-300 text-sm font-normal">
+              Send us a photo, drawing, or 3D file. We will tell you the exact price and 3D print it for you.
             </p>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
             <Link
               href="/custom-quote"
-              className="px-6 py-3.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs tracking-wide shadow-subtle hover:shadow-glow transition-all flex items-center gap-2"
+              className="px-8 py-4 rounded-xl bg-lime-500 hover:bg-lime-400 text-black font-extrabold text-xs tracking-wide shadow-subtle hover:shadow-glow hover:-translate-y-1 transition-all flex items-center gap-2"
             >
-              <span>Submit Custom CAD / Idea</span>
+              <span>Upload Custom 3D File / Idea</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
 
             <a
-              href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hello VK STUDIO! I would like to consult with an artisan regarding a custom 3D commission.')}`}
+              href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+                'Hello Vamsi Krishna! I have an idea for a custom 3D print. Can you give me an estimate?'
+              )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3.5 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 text-emerald-300 font-semibold text-xs transition-all flex items-center gap-2"
+              className="px-8 py-4 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 font-bold text-xs hover:-translate-y-1 transition-all flex items-center gap-2"
             >
               <MessageSquare className="w-4 h-4 text-emerald-400" />
-              <span>Consult on WhatsApp</span>
+              <span>Discuss on WhatsApp (+91 91004 84870)</span>
             </a>
           </div>
         </div>
