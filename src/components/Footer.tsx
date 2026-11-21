@@ -115,11 +115,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/#reviews" className="text-zinc-600 dark:text-zinc-400 hover:text-emerald-700 dark:hover:text-lime-400 transition-colors">
-                  Customer Reviews
-                </Link>
-              </li>
-              <li>
                 <Link href="/cart" className="text-zinc-600 dark:text-zinc-400 hover:text-emerald-700 dark:hover:text-lime-400 transition-colors">
                   Shopping Cart
                 </Link>

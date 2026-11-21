@@ -8,23 +8,20 @@ import {
   ShieldCheck,
   MessageSquare,
   Clock,
-  Star,
-  CheckCircle2,
   Box,
   Palette,
   Truck,
   Heart,
-  HelpCircle,
 } from 'lucide-react';
 import prisma from '@/lib/prisma';
 import ProductCard from '@/components/ProductCard';
 import ThreeCanvas from '@/components/ThreeCanvas';
-import { ProductType, ReviewType } from '@/lib/types';
+import { ProductType } from '@/lib/types';
 
 export const revalidate = 0; // Fresh dynamic data on every request
 
 async function getLandingData() {
-  const [featuredProducts, categories, reviews, settingsRaw] = await Promise.all([
+  const [featuredProducts, categories, settingsRaw] = await Promise.all([
     prisma.product.findMany({
       where: { isAvailable: true },
       include: {
@@ -38,14 +35,6 @@ async function getLandingData() {
       include: {
         _count: { select: { products: true } },
       },
-    }),
-    prisma.review.findMany({
-      where: { isPublished: true },
-      include: {
-        product: { select: { name: true, slug: true } },
-      },
-      orderBy: { rating: 'desc' },
-      take: 6,
     }),
     prisma.websiteSetting.findUnique({
       where: { key: 'general_settings' },
@@ -71,13 +60,12 @@ async function getLandingData() {
   return {
     featuredProducts: enrichedProducts as unknown as ProductType[],
     categories,
-    reviews: reviews as unknown as ReviewType[],
     settings,
   };
 }
 
 export default async function HomePage() {
-  const { featuredProducts, categories, reviews, settings } = await getLandingData();
+  const { featuredProducts, categories, settings } = await getLandingData();
 
   const whatsappNumber = (settings.whatsappNumber || '+91 91004 84870').replace(/[^0-9]/g, '');
 
@@ -107,7 +95,7 @@ export default async function HomePage() {
               <div className="relative group">
                 {/* Backlight Glow */}
                 <div className="absolute inset-0 rounded-3xl bg-lime-400/25 blur-3xl group-hover:bg-lime-400/40 transition-all duration-500" />
-                
+
                 {/* Floating Logo Container */}
                 <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-3xl p-2.5 bg-zinc-950 border-2 border-zinc-300 dark:border-white/20 shadow-2xl animate-float hover-lift ring-4 ring-black/5 dark:ring-white/5">
                   <img
@@ -476,81 +464,7 @@ export default async function HomePage() {
       </section>
 
       {/* ============================================================== */}
-      {/* 7. VERIFIED CUSTOMER REVIEWS                                   */}
-      {/* ============================================================== */}
-      <section id="reviews" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
-        <div className="text-center max-w-2xl mx-auto space-y-2 mb-12">
-          <p className="text-xs font-mono uppercase tracking-widest text-lime-400 font-bold">
-            Customer Feedback
-          </p>
-          <h2 className="font-display font-black text-3xl sm:text-4xl text-white tracking-tight">
-            What Customers Say About VK STUDIO
-          </h2>
-          <p className="text-zinc-400 text-sm">
-            Read real feedback from people who ordered custom 3D prints, nameplates, and gifts.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {reviews.map((rev) => (
-            <div
-              key={rev.id}
-              className="p-6 rounded-2xl bg-studio-surface border border-white/10 flex flex-col justify-between space-y-4 shadow-subtle hover:border-lime-400/40 transition-all hover-lift"
-            >
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`w-3.5 h-3.5 ${
-                          i < rev.rating
-                            ? 'fill-amber-400 text-amber-400'
-                            : 'text-zinc-700'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  {rev.isVerifiedPurchase && (
-                    <span className="text-[10px] font-mono text-emerald-400 flex items-center gap-1">
-                      <CheckCircle2 className="w-3 h-3" />
-                      Verified Order
-                    </span>
-                  )}
-                </div>
-
-                <p className="text-xs text-zinc-300 leading-relaxed italic">
-                  &ldquo;{rev.reviewText}&rdquo;
-                </p>
-              </div>
-
-              <div className="pt-3 border-t border-white/5 flex items-center justify-between">
-                <div>
-                  <h4 className="font-semibold text-white text-xs">{rev.authorName}</h4>
-                  {rev.product && (
-                    <Link
-                      href={`/products/${rev.product.slug || rev.productId}`}
-                      className="text-[10px] text-lime-400 hover:underline block truncate max-w-[180px]"
-                    >
-                      {rev.product.name}
-                    </Link>
-                  )}
-                </div>
-
-                <span className="text-[10px] text-zinc-500 font-mono">
-                  {new Date(rev.createdAt).toLocaleDateString('en-US', {
-                    month: 'short',
-                    year: 'numeric',
-                  })}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ============================================================== */}
-      {/* 8. WHATSAPP & CUSTOM 3D COMMISSION CALL TO ACTION               */}
+      {/* 7. WHATSAPP & CUSTOM 3D COMMISSION CALL TO ACTION               */}
       {/* ============================================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="rounded-3xl bg-gradient-to-r from-zinc-950 via-studio-card to-zinc-950 border border-lime-400/30 p-8 sm:p-14 text-center space-y-6 relative overflow-hidden shadow-premium">

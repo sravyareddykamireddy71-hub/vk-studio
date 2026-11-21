@@ -120,12 +120,6 @@ export default function Navbar() {
               >
                 About Studio
               </Link>
-              <Link
-                href="/#reviews"
-                className="hover:text-emerald-700 dark:hover:text-lime-400 transition-colors py-1"
-              >
-                Reviews
-              </Link>
               <a
                 href="https://instagram.com/vk_studi_o"
                 target="_blank"
@@ -281,13 +275,6 @@ export default function Navbar() {
               className="block text-zinc-200 hover:text-lime-400 text-base font-medium py-1"
             >
               About Studio
-            </Link>
-            <Link
-              href="/#reviews"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-zinc-200 hover:text-lime-400 text-base font-medium py-1"
-            >
-              Client Reviews
             </Link>
             <a
               href="https://instagram.com/vk_studi_o"
