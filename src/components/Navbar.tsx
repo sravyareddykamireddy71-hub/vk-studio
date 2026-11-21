@@ -68,61 +68,61 @@ export default function Navbar() {
       <header
         className={`sticky top-0 z-40 w-full transition-all duration-300 ${
           isScrolled
-            ? 'bg-studio-bg/90 backdrop-blur-xl border-b border-white/10 shadow-premium py-2.5'
-            : 'bg-transparent border-b border-transparent py-4'
+            ? 'bg-white/95 dark:bg-studio-bg/95 backdrop-blur-xl border-b border-zinc-200 dark:border-white/10 shadow-sm dark:shadow-premium py-2.5'
+            : 'bg-white/80 dark:bg-transparent border-b border-zinc-200/60 dark:border-transparent py-4 backdrop-blur-md'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between gap-4">
             {/* VK STUDIO Official Logo & Wordmark */}
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="relative w-11 h-11 rounded-xl overflow-hidden border border-white/20 shadow-subtle group-hover:border-lime-400/60 transition-all duration-300 flex-shrink-0 bg-black">
+              <div className="relative w-11 h-11 rounded-2xl overflow-hidden border border-zinc-300 dark:border-white/20 shadow-md group-hover:border-lime-500 transition-all duration-300 flex-shrink-0 bg-zinc-950 ring-2 ring-black/5 dark:ring-white/5 p-0.5">
                 <img
                   src="/images/logo.jpg"
                   alt="VK STUDIO - Vamsi Krishna Official Logo"
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="w-full h-full object-cover rounded-xl transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
               <div className="flex flex-col">
-                <span className="font-display font-black text-xl tracking-tight text-white flex items-center gap-1.5 leading-none">
-                  VK <span className="text-lime-400 font-bold tracking-widest text-lg">STUDIO</span>
+                <span className="font-display font-black text-xl tracking-tight text-zinc-950 dark:text-white flex items-center gap-1.5 leading-none">
+                  VK <span className="text-emerald-700 dark:text-lime-400 font-bold tracking-widest text-lg">STUDIO</span>
                 </span>
-                <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase mt-1">
+                <span className="text-[10px] font-mono tracking-widest text-zinc-600 dark:text-zinc-400 uppercase mt-1 font-semibold">
                   By Vamsi Krishna
                 </span>
               </div>
             </Link>
 
             {/* Desktop Navigation Links */}
-            <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-zinc-300">
+            <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-zinc-700 dark:text-zinc-300">
               <Link
                 href="/"
-                className="hover:text-lime-400 transition-colors py-1 relative hover:after:content-[''] hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:w-full hover:after:h-0.5 hover:after:bg-lime-400"
+                className="hover:text-emerald-700 dark:hover:text-lime-400 transition-colors py-1 relative hover:after:content-[''] hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:w-full hover:after:h-0.5 hover:after:bg-emerald-600 dark:hover:after:bg-lime-400"
               >
                 Home
               </Link>
               <Link
                 href="/products"
-                className="hover:text-lime-400 transition-colors py-1 flex items-center gap-1.5"
+                className="hover:text-emerald-700 dark:hover:text-lime-400 transition-colors py-1 flex items-center gap-1.5"
               >
                 Explore Products
               </Link>
               <Link
                 href="/custom-quote"
-                className="hover:text-lime-400 transition-colors py-1 flex items-center gap-1 text-lime-300 font-semibold"
+                className="text-emerald-700 dark:text-lime-300 hover:text-emerald-800 dark:hover:text-lime-400 transition-colors py-1 flex items-center gap-1 font-bold"
               >
-                <Sparkles className="w-3.5 h-3.5 text-lime-400" />
+                <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-lime-400" />
                 Custom Commission
               </Link>
               <Link
                 href="/#about"
-                className="hover:text-lime-400 transition-colors py-1"
+                className="hover:text-emerald-700 dark:hover:text-lime-400 transition-colors py-1"
               >
                 About Studio
               </Link>
               <Link
                 href="/#reviews"
-                className="hover:text-lime-400 transition-colors py-1"
+                className="hover:text-emerald-700 dark:hover:text-lime-400 transition-colors py-1"
               >
                 Reviews
               </Link>
@@ -130,7 +130,7 @@ export default function Navbar() {
                 href="https://instagram.com/vk_studi_o"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-lime-400 text-zinc-400 transition-colors py-1 text-xs font-mono"
+                className="hover:text-pink-600 text-pink-700 dark:text-pink-400 dark:hover:text-pink-300 transition-colors py-1 text-xs font-mono font-medium"
               >
                 @vk_studi_o
               </a>
@@ -142,7 +142,7 @@ export default function Navbar() {
               <button
                 onClick={() => setSearchOpen(true)}
                 aria-label="Search products"
-                className="p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 text-zinc-300 hover:text-white transition-all hover:bg-white/10"
+                className="p-2.5 rounded-xl bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 text-zinc-700 dark:bg-white/5 dark:hover:bg-white/10 dark:border-white/10 dark:text-zinc-300 dark:hover:text-white transition-all shadow-sm"
               >
                 <Search className="w-4 h-4" />
               </button>
@@ -154,11 +154,11 @@ export default function Navbar() {
               <button
                 onClick={openCart}
                 aria-label="Shopping Cart"
-                className="relative p-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-lime-400/40 text-zinc-300 hover:text-lime-400 transition-all hover:bg-white/10 group"
+                className="relative p-2.5 rounded-xl bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 text-zinc-800 hover:text-emerald-700 dark:bg-white/5 dark:hover:bg-white/10 dark:border-white/10 dark:text-zinc-300 dark:hover:text-lime-400 transition-all shadow-sm group"
               >
                 <ShoppingBag className="w-4 h-4 transition-transform group-hover:scale-110" />
                 {itemCount > 0 && (
-                  <span className="absolute -top-1.5 -right-1.5 flex items-center justify-center min-w-5 h-5 px-1 rounded-full bg-lime-400 text-black text-[11px] font-bold shadow-glow">
+                  <span className="absolute -top-1.5 -right-1.5 flex items-center justify-center min-w-5 h-5 px-1 rounded-full bg-lime-400 text-black text-[11px] font-bold shadow-sm">
                     {itemCount}
                   </span>
                 )}

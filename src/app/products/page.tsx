@@ -69,25 +69,25 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
       {/* Page Header */}
-      <div className="border-b border-white/10 pb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div className="border-b border-zinc-200 dark:border-white/10 pb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div className="space-y-2">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-amber-400">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 dark:bg-lime-400/10 border border-emerald-500/20 dark:border-lime-400/20 text-xs font-mono text-emerald-700 dark:text-lime-400 font-bold">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>VK STUDIO Catalog</span>
+            <span>VK STUDIO 3D Catalog</span>
           </div>
-          <h1 className="font-display font-black text-3xl sm:text-4xl text-white tracking-tight">
-            {currentCategory ? currentCategory.name : 'Explore All 3D Creations'}
+          <h1 className="font-display font-black text-3xl sm:text-4xl text-zinc-950 dark:text-white tracking-tight">
+            {currentCategory ? currentCategory.name : 'Explore All 3D Printed Items'}
           </h1>
-          <p className="text-zinc-400 text-sm max-w-xl">
+          <p className="text-zinc-600 dark:text-zinc-400 text-sm max-w-xl">
             {currentCategory?.description ||
-              'Explore our curated catalog of precision 3D-printed products, architectural signage, ambient lamps, and customizable collector items.'}
+              'Explore our curated catalog of custom 3D-printed nameplates, phone stands, personalized lithophane lamps, and unique gifts.'}
           </p>
         </div>
 
         {/* Stats */}
         <div className="text-right">
-          <span className="font-mono text-xs text-zinc-400">
-            Showing <strong className="text-white font-bold">{products.length}</strong> creations
+          <span className="font-mono text-xs text-zinc-600 dark:text-zinc-400 font-medium">
+            Showing <strong className="text-zinc-950 dark:text-white font-bold">{products.length}</strong> items
           </span>
         </div>
       </div>
@@ -98,10 +98,10 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-none">
           <Link
             href="/products"
-            className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
+            className={`px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
               !category || category === 'all'
-                ? 'bg-amber-600 text-white shadow-subtle'
-                : 'bg-white/5 border border-white/10 text-zinc-400 hover:text-white hover:bg-white/10'
+                ? 'bg-lime-500 text-black shadow-sm'
+                : 'bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 text-zinc-700 dark:bg-white/5 dark:hover:bg-white/10 dark:border-white/10 dark:text-zinc-400 dark:hover:text-white'
             }`}
           >
             All Products
@@ -110,10 +110,10 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
             <Link
               key={cat.id}
               href={`/products?category=${cat.slug}${sort ? `&sort=${sort}` : ''}`}
-              className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
                 category === cat.slug
-                  ? 'bg-amber-600 text-white shadow-subtle'
-                  : 'bg-white/5 border border-white/10 text-zinc-400 hover:text-white hover:bg-white/10'
+                  ? 'bg-lime-500 text-black shadow-sm'
+                  : 'bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 text-zinc-700 dark:bg-white/5 dark:hover:bg-white/10 dark:border-white/10 dark:text-zinc-400 dark:hover:text-white'
               }`}
             >
               {cat.name} ({cat._count.products})

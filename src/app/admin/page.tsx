@@ -121,10 +121,10 @@ export default async function AdminDashboardPage() {
   return (
     <div className="space-y-8">
       {/* Brand Hero Card with Floating Logo & Saying */}
-      <div className="rounded-3xl bg-gradient-to-r from-zinc-950 via-studio-card to-zinc-950 border border-white/10 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-premium relative overflow-hidden">
+      <div className="rounded-3xl bg-white dark:bg-[#141618] border border-zinc-200 dark:border-white/10 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm dark:shadow-premium relative overflow-hidden transition-colors">
         <div className="flex items-center gap-5">
-          {/* Floating Logo */}
-          <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-2xl p-1.5 bg-black border-2 border-white/20 shadow-premium flex-shrink-0 animate-float-subtle">
+          {/* Floating Logo with Luxury Badge Frame */}
+          <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-2xl p-1 bg-zinc-950 border-2 border-zinc-300 dark:border-white/20 shadow-md flex-shrink-0 animate-float-subtle ring-2 ring-black/5 dark:ring-white/5">
             <img
               src="/images/logo.jpg"
               alt="VK STUDIO - Vamsi Krishna"
@@ -133,16 +133,16 @@ export default async function AdminDashboardPage() {
           </div>
 
           <div className="space-y-1">
-            <span className="text-[11px] font-mono tracking-widest text-lime-400 font-bold uppercase block">
+            <span className="text-[11px] font-mono tracking-widest text-emerald-700 dark:text-lime-400 font-bold uppercase block">
               VK STUDIO • ADMIN WORKSPACE
             </span>
-            <h1 className="font-display font-black text-2xl md:text-3xl text-white tracking-tight">
+            <h1 className="font-display font-black text-2xl md:text-3xl text-zinc-950 dark:text-white tracking-tight">
               Your Imagination,{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 to-emerald-300">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 via-lime-600 to-emerald-600 dark:from-lime-400 dark:to-emerald-300">
                 My Creation
               </span>
             </h1>
-            <p className="text-xs text-zinc-400">
+            <p className="text-xs text-zinc-600 dark:text-zinc-400">
               Welcome back, Vamsi Krishna. Manage 3D printed products, track printing orders, and respond to custom design requests.
             </p>
           </div>
@@ -151,16 +151,16 @@ export default async function AdminDashboardPage() {
         <div className="flex flex-wrap items-center gap-3 flex-shrink-0">
           <Link
             href="/admin/products/new"
-            className="px-4 py-2.5 rounded-xl bg-lime-500 hover:bg-lime-400 text-black font-extrabold text-xs flex items-center gap-1.5 shadow-subtle hover:shadow-glow hover:-translate-y-0.5 transition-all"
+            className="px-4 py-2.5 rounded-xl bg-lime-500 hover:bg-lime-400 text-black font-extrabold text-xs flex items-center gap-1.5 shadow-sm hover:shadow-glow hover:-translate-y-0.5 transition-all"
           >
             <Box className="w-4 h-4" />
             <span>+ Add New Product</span>
           </Link>
           <Link
             href="/admin/requests"
-            className="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white border border-white/15 font-semibold text-xs flex items-center gap-1.5 hover:-translate-y-0.5 transition-all"
+            className="px-4 py-2.5 rounded-xl bg-zinc-100 hover:bg-zinc-200 text-zinc-800 border border-zinc-200 dark:bg-white/5 dark:hover:bg-white/10 dark:text-white dark:border-white/15 font-semibold text-xs flex items-center gap-1.5 hover:-translate-y-0.5 transition-all shadow-sm"
           >
-            <Sparkles className="w-4 h-4 text-lime-400" />
+            <Sparkles className="w-4 h-4 text-emerald-700 dark:text-lime-400" />
             <span>Review Custom Requests</span>
           </Link>
         </div>

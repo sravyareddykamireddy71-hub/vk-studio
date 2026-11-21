@@ -80,23 +80,23 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   return (
     <div className="min-h-screen bg-studio-bg flex flex-col md:flex-row">
       {/* Admin Sidebar */}
-      <aside className="w-full md:w-64 bg-studio-surface border-r border-white/10 p-5 flex flex-col justify-between flex-shrink-0">
+      <aside className="w-full md:w-64 bg-white dark:bg-studio-surface border-r border-zinc-200 dark:border-white/10 p-5 flex flex-col justify-between flex-shrink-0 transition-colors">
         <div className="space-y-6">
           {/* Logo & Portal Badge */}
           <div className="space-y-1">
             <Link href="/admin" className="flex items-center gap-2.5 group">
-              <div className="w-9 h-9 rounded-xl overflow-hidden border border-white/20 shadow-subtle flex-shrink-0 bg-black">
+              <div className="w-9 h-9 rounded-xl overflow-hidden border border-zinc-300 dark:border-white/20 shadow-sm flex-shrink-0 bg-zinc-950 ring-1 ring-black/5 p-0.5">
                 <img
                   src="/images/logo.jpg"
                   alt="VK STUDIO - Vamsi Krishna"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-lg"
                 />
               </div>
               <div className="flex flex-col">
-                <span className="font-display font-black text-sm text-white tracking-tight flex items-center gap-1">
-                  VK <span className="text-lime-400 font-bold text-xs">STUDIO</span>
+                <span className="font-display font-black text-sm text-zinc-950 dark:text-white tracking-tight flex items-center gap-1">
+                  VK <span className="text-emerald-700 dark:text-lime-400 font-bold text-xs">STUDIO</span>
                 </span>
-                <span className="text-[9px] font-mono tracking-widest text-zinc-400 uppercase">
+                <span className="text-[9px] font-mono tracking-widest text-zinc-600 dark:text-zinc-400 uppercase font-semibold">
                   Vamsi Krishna Atelier
                 </span>
               </div>
@@ -111,9 +111,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium transition-all ${isActive
-                      ? 'bg-amber-500 text-black font-bold shadow-subtle'
-                      : 'text-zinc-400 hover:text-white hover:bg-white/5'
+                  className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-semibold transition-all ${isActive
+                      ? 'bg-lime-500 text-black font-extrabold shadow-sm'
+                      : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-white/5'
                     }`}
                 >
                   <item.icon className="w-4 h-4 flex-shrink-0" />
@@ -125,21 +125,21 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
 
         {/* Sidebar Footer */}
-        <div className="pt-6 border-t border-white/10 space-y-3">
+        <div className="pt-6 border-t border-zinc-200 dark:border-white/10 space-y-3">
           <Link
             href="/"
             target="_blank"
-            className="flex items-center justify-between px-3 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-zinc-300 text-xs transition-colors"
+            className="flex items-center justify-between px-3 py-2 rounded-xl bg-zinc-100 hover:bg-zinc-200 text-zinc-800 dark:bg-white/5 dark:hover:bg-white/10 dark:text-zinc-300 text-xs transition-colors font-medium"
           >
             <span>Live Storefront</span>
             <ArrowUpRight className="w-3.5 h-3.5 text-zinc-500" />
           </Link>
 
-          <div className="flex items-center justify-between px-2 pt-1 text-[11px] text-zinc-500">
-            <span className="truncate max-w-[120px]">{user.name}</span>
+          <div className="flex items-center justify-between px-2 pt-1 text-[11px] text-zinc-600 dark:text-zinc-400">
+            <span className="truncate max-w-[120px] font-medium">{user.name}</span>
             <button
               onClick={logout}
-              className="text-red-400 hover:text-red-300 flex items-center gap-1"
+              className="text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 flex items-center gap-1 font-semibold"
             >
               <LogOut className="w-3 h-3" />
               <span>Exit</span>
@@ -149,28 +149,28 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       </aside>
 
       {/* Main Admin Content Body */}
-      <div className="flex-1 min-w-0 flex flex-col">
+      <div className="flex-1 min-w-0 flex flex-col bg-zinc-50/60 dark:bg-transparent">
         {/* Top bar */}
-        <header className="h-16 border-b border-white/10 bg-studio-surface/50 backdrop-blur-md px-6 flex items-center justify-between text-xs">
-          <div className="flex items-center gap-2 text-zinc-400 font-mono">
+        <header className="h-16 border-b border-zinc-200 dark:border-white/10 bg-white/90 dark:bg-studio-surface/50 backdrop-blur-md px-6 flex items-center justify-between text-xs transition-colors">
+          <div className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400 font-mono">
             <span>Admin</span>
             <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-white capitalize">
+            <span className="text-zinc-950 dark:text-white font-bold capitalize">
               {pathname.replace('/admin', '').replace('/', '') || 'Overview'}
             </span>
           </div>
 
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-mono">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-800 dark:text-emerald-400 border border-emerald-500/20 text-[10px] font-mono font-bold">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
               <span>3D Printers: Ready</span>
             </div>
 
             <ThemeToggle />
 
             <div className="text-right">
-              <span className="font-bold text-white block text-xs">{user.name}</span>
-              <span className="text-[10px] text-zinc-400 block font-mono">Studio Director</span>
+              <span className="font-bold text-zinc-950 dark:text-white block text-xs">{user.name}</span>
+              <span className="text-[10px] text-zinc-600 dark:text-zinc-400 block font-mono font-medium">Studio Director</span>
             </div>
           </div>
         </header>

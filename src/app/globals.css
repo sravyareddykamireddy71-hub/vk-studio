@@ -239,6 +239,24 @@ html:not(.dark) .text-white:not(button):not(a.bg-black):not(a.bg-lime-500):not(.
   color: #0F172A;
 }
 
+/* Ensure dark elements inside light theme keep their crisp white/light text */
+html:not(.dark) .bg-black .text-white,
+html:not(.dark) .bg-zinc-950 .text-white,
+html:not(.dark) .bg-zinc-900 .text-white,
+html:not(.dark) [class*="bg-black"] .text-zinc-100,
+html:not(.dark) [class*="bg-zinc-950"] .text-zinc-100 {
+  color: #F8F9FA !important;
+}
+
+/* High-contrast Lime/Emerald in Light Mode for WCAG AAA legibility */
+html:not(.dark) .text-lime-400 {
+  color: #047857;
+}
+
+html:not(.dark) .text-lime-300 {
+  color: #065F46;
+}
+
 html:not(.dark) .text-zinc-100 {
   color: #1E293B;
 }

@@ -109,7 +109,7 @@ export default async function HomePage() {
                 <div className="absolute inset-0 rounded-3xl bg-lime-400/25 blur-3xl group-hover:bg-lime-400/40 transition-all duration-500" />
                 
                 {/* Floating Logo Container */}
-                <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-3xl p-3 bg-black/90 border-2 border-white/20 hover:border-lime-400 shadow-premium animate-float hover-lift">
+                <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-3xl p-2.5 bg-zinc-950 border-2 border-zinc-300 dark:border-white/20 shadow-2xl animate-float hover-lift ring-4 ring-black/5 dark:ring-white/5">
                   <img
                     src="/images/logo.jpg"
                     alt="VK STUDIO - Vamsi Krishna"
@@ -121,14 +121,14 @@ export default async function HomePage() {
 
             {/* Signature Saying */}
             <div className="space-y-4 max-w-3xl mx-auto">
-              <h1 className="font-display font-black text-4xl sm:text-6xl lg:text-7xl tracking-tight text-white leading-[1.08]">
+              <h1 className="font-display font-black text-4xl sm:text-6xl lg:text-7xl tracking-tight text-zinc-950 dark:text-white leading-[1.08]">
                 Your Imagination,{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 via-emerald-300 to-lime-500">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 via-lime-600 to-emerald-600 dark:from-lime-400 dark:via-emerald-300 dark:to-lime-500">
                   My Creation
                 </span>
               </h1>
 
-              <p className="text-zinc-300 text-base sm:text-lg leading-relaxed font-normal max-w-2xl mx-auto">
+              <p className="text-zinc-700 dark:text-zinc-300 text-base sm:text-lg leading-relaxed font-normal max-w-2xl mx-auto">
                 Turn your names, ideas, and favorite designs into high-quality 3D printed items you can hold. We specialize strictly in custom 3D printing — made with care and shipped right to your door.
               </p>
             </div>
@@ -436,36 +436,36 @@ export default async function HomePage() {
 
               {/* Right Side: Visual Showcase Card */}
               <div className="lg:col-span-5 flex justify-center">
-                <div className="w-full max-w-sm rounded-3xl p-6 bg-black/60 border border-white/15 space-y-4 text-center">
-                  <div className="w-28 h-28 rounded-2xl overflow-hidden border border-white/20 mx-auto shadow-premium bg-black animate-float-subtle">
+                <div className="w-full max-w-sm rounded-3xl p-6 bg-zinc-950 text-white border border-zinc-800 shadow-2xl space-y-4 text-center">
+                  <div className="w-28 h-28 rounded-2xl overflow-hidden border border-zinc-700 mx-auto shadow-2xl bg-black p-1 ring-2 ring-white/10 animate-float-subtle">
                     <img
                       src="/images/logo.jpg"
                       alt="VK STUDIO - Vamsi Krishna"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover rounded-xl"
                     />
                   </div>
 
                   <div>
-                    <h3 className="font-display font-black text-lg text-white">VK STUDIO</h3>
-                    <p className="text-xs text-lime-400 font-mono">Your Imagination, My Creation</p>
+                    <h3 className="font-display font-black text-xl text-white">VK STUDIO</h3>
+                    <p className="text-xs text-lime-400 font-mono font-bold tracking-wide">Your Imagination, My Creation</p>
                   </div>
 
-                  <div className="text-xs text-zinc-400 border-t border-white/10 pt-3 text-left space-y-2">
+                  <div className="text-xs text-zinc-300 border-t border-zinc-800 pt-3 text-left space-y-2">
                     <div className="flex items-center justify-between">
-                      <span>Founder / Maker:</span>
-                      <strong className="text-white">Vamsi Krishna</strong>
+                      <span className="text-zinc-400">Founder / Maker:</span>
+                      <strong className="text-white font-bold">Vamsi Krishna</strong>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span>Specialization:</span>
-                      <strong className="text-lime-400">Custom 3D Printing</strong>
+                      <span className="text-zinc-400">Specialization:</span>
+                      <strong className="text-lime-400 font-bold">Custom 3D Printing</strong>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span>WhatsApp Direct:</span>
-                      <strong className="text-white">+91 91004 84870</strong>
+                      <span className="text-zinc-400">WhatsApp Direct:</span>
+                      <strong className="text-white font-bold">+91 91004 84870</strong>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span>Instagram:</span>
-                      <strong className="text-white">@vk_studi_o</strong>
+                      <span className="text-zinc-400">Instagram:</span>
+                      <strong className="text-white font-bold">@vk_studi_o</strong>
                     </div>
                   </div>
                 </div>
