@@ -56,13 +56,24 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-studio-bg text-studio-text antialiased min-h-screen flex flex-col selection:bg-amber-500 selection:text-black">
+      <body className="bg-studio-bg text-studio-text antialiased min-h-screen flex flex-col selection:bg-lime-400 selection:text-black relative">
+        {/* Cinematic Ambient 3D Printing Studio Background Layer */}
+        <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+          <img
+            src="/images/bg-3d-printer.jpg"
+            alt="VK STUDIO 3D Printing Mechanics"
+            className="w-full h-full object-cover object-center opacity-30 dark:opacity-20 scale-105 animate-slow-pan transition-opacity duration-700"
+          />
+          <div className="absolute inset-0 bg-radial-vignette pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-studio-bg/60 via-studio-bg/85 to-studio-bg pointer-events-none" />
+        </div>
+
         <ThemeProvider>
           <AuthProvider>
             <CartProvider>
               <AnnouncementBanner />
               <Navbar />
-              <main className="flex-1">{children}</main>
+              <main className="flex-1 relative z-10">{children}</main>
               <CartDrawer />
               <Footer />
             </CartProvider>

@@ -91,115 +91,120 @@ export default async function HomePage() {
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[450px] bg-lime-500/10 rounded-full blur-[140px] pointer-events-none animate-glow-pulse" />
         <div className="absolute top-10 right-1/4 w-80 h-80 bg-emerald-500/10 rounded-full blur-[130px] pointer-events-none" />
 
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 relative z-10">
-          {/* Subtle Top Pill */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono tracking-wider text-lime-400 uppercase font-semibold shadow-subtle">
-            <span className="w-2 h-2 rounded-full bg-lime-400 animate-pulse" />
-            <span>VK STUDIO • BY VAMSI KRISHNA</span>
-          </div>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="rounded-3xl p-8 sm:p-14 glass-panel border border-white/10 shadow-premium space-y-8 relative overflow-hidden backdrop-blur-2xl">
+            {/* Ambient inner spotlight glow */}
+            <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-lime-400/15 rounded-full blur-[100px] pointer-events-none" />
 
-          {/* Exclusive Floating Official Logo */}
-          <div className="flex justify-center items-center py-2">
-            <div className="relative group">
-              {/* Backlight Glow */}
-              <div className="absolute inset-0 rounded-3xl bg-lime-400/20 blur-2xl group-hover:bg-lime-400/30 transition-all duration-500" />
-              
-              {/* Floating Logo Container */}
-              <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-3xl p-3 bg-black/90 border-2 border-white/20 hover:border-lime-400 shadow-premium animate-float hover-lift">
-                <img
-                  src="/images/logo.jpg"
-                  alt="VK STUDIO - Vamsi Krishna"
-                  className="w-full h-full object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105"
-                />
+            {/* Subtle Top Pill */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono tracking-wider text-lime-400 uppercase font-semibold shadow-subtle">
+              <span className="w-2 h-2 rounded-full bg-lime-400 animate-pulse" />
+              <span>VK STUDIO • BY VAMSI KRISHNA</span>
+            </div>
+
+            {/* Exclusive Floating Official Logo */}
+            <div className="flex justify-center items-center py-2">
+              <div className="relative group">
+                {/* Backlight Glow */}
+                <div className="absolute inset-0 rounded-3xl bg-lime-400/25 blur-3xl group-hover:bg-lime-400/40 transition-all duration-500" />
+                
+                {/* Floating Logo Container */}
+                <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-3xl p-3 bg-black/90 border-2 border-white/20 hover:border-lime-400 shadow-premium animate-float hover-lift">
+                  <img
+                    src="/images/logo.jpg"
+                    alt="VK STUDIO - Vamsi Krishna"
+                    className="w-full h-full object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Signature Saying */}
-          <div className="space-y-4 max-w-3xl mx-auto">
-            <h1 className="font-display font-black text-4xl sm:text-6xl lg:text-7xl tracking-tight text-white leading-[1.08]">
-              Your Imagination,{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 via-emerald-300 to-lime-500">
-                My Creation
-              </span>
-            </h1>
+            {/* Signature Saying */}
+            <div className="space-y-4 max-w-3xl mx-auto">
+              <h1 className="font-display font-black text-4xl sm:text-6xl lg:text-7xl tracking-tight text-white leading-[1.08]">
+                Your Imagination,{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 via-emerald-300 to-lime-500">
+                  My Creation
+                </span>
+              </h1>
 
-            <p className="text-zinc-300 text-base sm:text-lg leading-relaxed font-normal max-w-2xl mx-auto">
-              Turn your names, ideas, and favorite designs into high-quality 3D printed items you can hold. We specialize strictly in custom 3D printing — made with care and shipped right to your door.
-            </p>
-          </div>
-
-          {/* Main Action Buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-            <Link
-              href="#products"
-              className="px-8 py-4 rounded-2xl bg-lime-500 hover:bg-lime-400 text-black font-extrabold text-sm tracking-wide shadow-subtle hover:shadow-glow hover:-translate-y-1 transition-all flex items-center gap-2 group"
-            >
-              <span>Explore 3D Products</span>
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-
-            <Link
-              href="/custom-quote"
-              className="px-8 py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/15 hover:border-lime-400/60 text-white font-bold text-sm hover:-translate-y-1 transition-all flex items-center gap-2"
-            >
-              <Sparkles className="w-4 h-4 text-lime-400" />
-              <span>Request Custom 3D Design</span>
-            </Link>
-
-            <a
-              href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                'Hi Vamsi Krishna! I visited VK STUDIO and would like to order a custom 3D printed item.'
-              )}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-4 rounded-2xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 font-bold text-sm hover:-translate-y-1 transition-all flex items-center gap-2"
-            >
-              <MessageSquare className="w-4 h-4 text-emerald-400" />
-              <span>WhatsApp Chat</span>
-            </a>
-          </div>
-
-          {/* 4 Customer Confidence Badges (Simple Terminology) */}
-          <div className="pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
-            <div className="p-4 rounded-2xl bg-studio-surface border border-white/10 hover-lift">
-              <div className="flex items-center gap-2 text-lime-400 font-bold text-xs mb-1">
-                <Box className="w-4 h-4" />
-                <span>100% 3D Printed</span>
-              </div>
-              <p className="text-[11px] text-zinc-400 leading-normal">
-                Authentic layer-by-layer 3D prints using strong, durable filaments. No resin crafts or mold plastics.
+              <p className="text-zinc-300 text-base sm:text-lg leading-relaxed font-normal max-w-2xl mx-auto">
+                Turn your names, ideas, and favorite designs into high-quality 3D printed items you can hold. We specialize strictly in custom 3D printing — made with care and shipped right to your door.
               </p>
             </div>
 
-            <div className="p-4 rounded-2xl bg-studio-surface border border-white/10 hover-lift">
-              <div className="flex items-center gap-2 text-lime-400 font-bold text-xs mb-1">
-                <Sliders className="w-4 h-4" />
-                <span>Personalized For You</span>
-              </div>
-              <p className="text-[11px] text-zinc-400 leading-normal">
-                Add your name, choose your favorite colors, and select custom dimensions easily.
-              </p>
+            {/* Main Action Buttons */}
+            <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+              <Link
+                href="#products"
+                className="px-8 py-4 rounded-2xl bg-lime-500 hover:bg-lime-400 text-black font-extrabold text-sm tracking-wide shadow-subtle hover:shadow-glow hover:-translate-y-1 transition-all flex items-center gap-2 group"
+              >
+                <span>Explore 3D Products</span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+
+              <Link
+                href="/custom-quote"
+                className="px-8 py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/15 hover:border-lime-400/60 text-white font-bold text-sm hover:-translate-y-1 transition-all flex items-center gap-2"
+              >
+                <Sparkles className="w-4 h-4 text-lime-400" />
+                <span>Request Custom 3D Design</span>
+              </Link>
+
+              <a
+                href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+                  'Hi Vamsi Krishna! I visited VK STUDIO and would like to order a custom 3D printed item.'
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-4 rounded-2xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 font-bold text-sm hover:-translate-y-1 transition-all flex items-center gap-2"
+              >
+                <MessageSquare className="w-4 h-4 text-emerald-400" />
+                <span>WhatsApp Chat</span>
+              </a>
             </div>
 
-            <div className="p-4 rounded-2xl bg-studio-surface border border-white/10 hover-lift">
-              <div className="flex items-center gap-2 text-lime-400 font-bold text-xs mb-1">
-                <MessageSquare className="w-4 h-4" />
-                <span>Direct WhatsApp Updates</span>
+            {/* 4 Customer Confidence Badges (Simple Terminology) */}
+            <div className="pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
+              <div className="p-4 rounded-2xl bg-studio-surface/80 border border-white/10 hover-lift">
+                <div className="flex items-center gap-2 text-lime-400 font-bold text-xs mb-1">
+                  <Box className="w-4 h-4" />
+                  <span>100% 3D Printed</span>
+                </div>
+                <p className="text-[11px] text-zinc-400 leading-normal">
+                  Authentic layer-by-layer 3D prints using strong, durable filaments. No resin crafts or mold plastics.
+                </p>
               </div>
-              <p className="text-[11px] text-zinc-400 leading-normal">
-                Direct chat with Vamsi Krishna on WhatsApp for previews, photos, and answers.
-              </p>
-            </div>
 
-            <div className="p-4 rounded-2xl bg-studio-surface border border-white/10 hover-lift">
-              <div className="flex items-center gap-2 text-lime-400 font-bold text-xs mb-1">
-                <Truck className="w-4 h-4" />
-                <span>Safe Doorstep Delivery</span>
+              <div className="p-4 rounded-2xl bg-studio-surface/80 border border-white/10 hover-lift">
+                <div className="flex items-center gap-2 text-lime-400 font-bold text-xs mb-1">
+                  <Sliders className="w-4 h-4" />
+                  <span>Personalized For You</span>
+                </div>
+                <p className="text-[11px] text-zinc-400 leading-normal">
+                  Add your name, choose your favorite colors, and select custom dimensions easily.
+                </p>
               </div>
-              <p className="text-[11px] text-zinc-400 leading-normal">
-                Carefully cushioned and shipped safely to your home anywhere across India.
-              </p>
+
+              <div className="p-4 rounded-2xl bg-studio-surface/80 border border-white/10 hover-lift">
+                <div className="flex items-center gap-2 text-lime-400 font-bold text-xs mb-1">
+                  <MessageSquare className="w-4 h-4" />
+                  <span>Direct WhatsApp Updates</span>
+                </div>
+                <p className="text-[11px] text-zinc-400 leading-normal">
+                  Direct chat with Vamsi Krishna on WhatsApp for previews, photos, and answers.
+                </p>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-studio-surface/80 border border-white/10 hover-lift">
+                <div className="flex items-center gap-2 text-lime-400 font-bold text-xs mb-1">
+                  <Truck className="w-4 h-4" />
+                  <span>Safe Doorstep Delivery</span>
+                </div>
+                <p className="text-[11px] text-zinc-400 leading-normal">
+                  Carefully cushioned and shipped safely to your home anywhere across India.
+                </p>
+              </div>
             </div>
           </div>
         </div>

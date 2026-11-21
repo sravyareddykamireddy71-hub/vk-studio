@@ -1,8 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-mono: 'Space Grotesk', ui-monospace, monospace;
+
   --studio-bg: #F8F9FA;
   --studio-surface: #FFFFFF;
   --studio-card: #FFFFFF;
@@ -35,12 +41,18 @@ html {
 }
 
 body {
+  font-family: var(--font-sans);
   color: var(--studio-text);
   background: var(--studio-bg);
   min-height: 100vh;
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   overflow-x: hidden;
   transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.025em;
 }
 
 /* Floating Animations */
@@ -73,6 +85,18 @@ body {
   }
 }
 
+@keyframes slow-pan {
+  0% {
+    transform: scale(1.04) translate(0%, 0%);
+  }
+  50% {
+    transform: scale(1.09) translate(-1%, -0.8%);
+  }
+  100% {
+    transform: scale(1.04) translate(0%, 0%);
+  }
+}
+
 .animate-float {
   animation: float 4.5s ease-in-out infinite;
 }
@@ -89,13 +113,35 @@ body {
   animation: glow-pulse 3.5s ease-in-out infinite;
 }
 
+.animate-slow-pan {
+  animation: slow-pan 24s ease-in-out infinite alternate;
+}
+
 /* Interactive Card & Button Hover Transitions */
 .hover-lift {
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
 }
 
 .hover-lift:hover {
   transform: translateY(-6px);
+}
+
+.hover-glow {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px -4px rgba(163, 230, 53, 0.25);
+  border-color: rgba(163, 230, 53, 0.5);
+}
+
+/* Ambient 3D Printer Background Vignette */
+.bg-radial-vignette {
+  background: radial-gradient(circle at 50% 30%, transparent 15%, rgba(12, 13, 14, 0.75) 55%, rgba(12, 13, 14, 0.98) 100%);
+}
+
+html:not(.dark) .bg-radial-vignette {
+  background: radial-gradient(circle at 50% 30%, transparent 15%, rgba(248, 249, 250, 0.8) 55%, rgba(248, 249, 250, 0.98) 100%);
 }
 
 /* Custom Studio Scrollbar - Dark */
@@ -269,6 +315,6 @@ html:not(.dark) .subtle-border {
 
 /* Selection Color */
 ::selection {
-  background: #D97706;
+  background: #a3e635;
   color: #000000;
 }
