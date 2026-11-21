@@ -19,10 +19,10 @@ export default function Footer() {
   const [settings, setSettings] = useState<any>({
     brandName: 'VK STUDIO',
     tagline: 'Premium 3D Printing & Customization Laboratory by Vamsi Krishna',
-    whatsappNumber: '+91 98765 43210',
+    whatsappNumber: '+91 91004 84870',
     instagramUrl: 'https://instagram.com/vk_studi_o',
     contactEmail: 'contact@vkstudio.design',
-    contactPhone: '+91 98765 43210',
+    contactPhone: '+91 91004 84870',
     studioAddress: 'VK Studio, Bengaluru, Karnataka, India',
     workingHours: 'Monday – Saturday: 10:00 AM – 8:00 PM IST',
   });
@@ -36,7 +36,7 @@ export default function Footer() {
       .catch(() => {});
   }, []);
 
-  const cleanWhatsapp = (settings.whatsappNumber || '+919876543210').replace(/[^0-9]/g, '');
+  const cleanWhatsapp = (settings.whatsappNumber || '+919100484870').replace(/[^0-9]/g, '');
 
   return (
     <footer className="bg-studio-bg border-t border-white/10 text-zinc-400 text-xs">

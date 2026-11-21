@@ -347,7 +347,7 @@ export default function ProfilePage() {
                       </span>
 
                       <a
-                        href={`https://wa.me/919876543210?text=${encodeURIComponent(`Hello VK STUDIO! I am checking on my commission request #${req.referenceNumber}.`)}`}
+                        href={`https://wa.me/919100484870?text=${encodeURIComponent(`Hello VK STUDIO! I am checking on my commission request #${req.referenceNumber}.`)}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-emerald-400 hover:text-emerald-300 flex items-center gap-1 font-medium"

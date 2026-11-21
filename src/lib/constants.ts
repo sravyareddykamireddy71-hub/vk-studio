@@ -30,10 +30,10 @@ export const DEFAULT_SETTINGS: StudioSettings = {
       icon: 'MessageSquare'
     }
   ],
-  whatsappNumber: process.env.NEXT_PUBLIC_ADMIN_WHATSAPP || '+91 98765 43210',
+  whatsappNumber: process.env.NEXT_PUBLIC_ADMIN_WHATSAPP || '+91 91004 84870',
   instagramUrl: 'https://instagram.com/vk_studi_o',
   contactEmail: 'contact@vkstudio.design',
-  contactPhone: process.env.NEXT_PUBLIC_ADMIN_WHATSAPP || '+91 98765 43210',
+  contactPhone: process.env.NEXT_PUBLIC_ADMIN_WHATSAPP || '+91 91004 84870',
   studioAddress: 'VK Studio, Bengaluru, Karnataka, India',
   workingHours: 'Monday – Saturday: 10:00 AM – 8:00 PM IST',
   announcementText: '✨ Accepting Custom Commissions & Bulk Orders — Follow @vk_studi_o on Instagram!',

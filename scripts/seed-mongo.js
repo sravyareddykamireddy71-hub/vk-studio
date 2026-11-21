@@ -30,7 +30,7 @@ async function seedMongo() {
         email: 'admin@vkstudio.com',
         password: adminPasswordHash,
         role: 'ADMIN',
-        phone: process.env.NEXT_PUBLIC_ADMIN_WHATSAPP || '+91 98765 43210',
+        phone: process.env.NEXT_PUBLIC_ADMIN_WHATSAPP || '+91 91004 84870',
         createdAt: new Date(),
       },
       {

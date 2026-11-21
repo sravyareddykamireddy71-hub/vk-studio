@@ -241,7 +241,7 @@ export default async function OrderSuccessPage({ params }: OrderSuccessPageProps
               Notify our studio lead directly to accelerate CAD slicing analysis or coordinate immediate local pickup.
             </p>
             <a
-              href={`https://wa.me/919876543210?text=${whatsappMessage}`}
+              href={`https://wa.me/919100484870?text=${whatsappMessage}`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-subtle transition-all"

@@ -79,7 +79,7 @@ async function getLandingData() {
 export default async function HomePage() {
   const { featuredProducts, categories, reviews, settings } = await getLandingData();
 
-  const whatsappNumber = (settings.whatsappNumber || '+91 98765 43210').replace(/[^0-9]/g, '');
+  const whatsappNumber = (settings.whatsappNumber || '+91 91004 84870').replace(/[^0-9]/g, '');
 
   return (
     <div className="space-y-24 md:space-y-32 pb-24">

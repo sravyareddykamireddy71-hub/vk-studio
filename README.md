@@ -82,7 +82,7 @@ Under **Environment Variables** in Vercel, add:
 | Key | Example Value | Description |
 |---|---|---|
 | `MONGODB_URI` | `mongodb+srv://<user>:<password>@cluster0.uv9trse.mongodb.net/vkstudio?retryWrites=true&w=majority` | Your MongoDB Atlas Connection String |
-| `NEXT_PUBLIC_ADMIN_WHATSAPP` | `+91 98765 43210` | Your Studio WhatsApp Business Number |
+| `NEXT_PUBLIC_ADMIN_WHATSAPP` | `+91 91004 84870` | Your Studio WhatsApp Business Number |
 | `NEXT_PUBLIC_INSTAGRAM_URL` | `https://instagram.com/vk_studi_o` | Official Studio Instagram Link |
 | `NEXT_PUBLIC_INSTAGRAM_HANDLE` | `vk_studi_o` | Official Instagram Handle |
 | `JWT_SECRET` | `vk-studio-super-secret-key-2026-production` | Secret string for session cookies |

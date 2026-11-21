@@ -141,7 +141,7 @@ export default function CustomQuotePage() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4">
           <a
-            href={`https://wa.me/919876543210?text=${whatsappMsg}`}
+            href={`https://wa.me/919100484870?text=${whatsappMsg}`}
             target="_blank"
             rel="noopener noreferrer"
             className="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-subtle transition-all"

@@ -241,7 +241,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   // WhatsApp Order Discussion URL generator
   const getWhatsAppShareUrl = (customWhatsappNumber?: string) => {
-    const rawNumber = customWhatsappNumber || '+919876543210';
+    const rawNumber = customWhatsappNumber || process.env.NEXT_PUBLIC_ADMIN_WHATSAPP || '+919100484870';
     const cleanNumber = rawNumber.replace(/[^0-9]/g, '');
 
     if (items.length === 0) {
