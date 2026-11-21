@@ -20,6 +20,7 @@ import {
   Sliders,
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
+import ThemeToggle from '@/components/ThemeToggle';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const { user, loading, isAdmin, logout } = useAuth();
@@ -164,6 +165,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               <span>Slicing Engine: Online</span>
             </div>
+
+            <ThemeToggle />
 
             <div className="text-right">
               <span className="font-bold text-white block text-xs">{user.name}</span>

@@ -3,6 +3,28 @@
 @tailwind utilities;
 
 :root {
+  --studio-bg: #F8F9FA;
+  --studio-surface: #FFFFFF;
+  --studio-card: #FFFFFF;
+  --studio-border: #E2E8F0;
+  --studio-hover: #F1F5F9;
+  --studio-muted: #64748B;
+  --studio-text: #0F172A;
+  --studio-subtext: #475569;
+  --foreground-rgb: 15, 23, 42;
+  --background-start-rgb: 248, 249, 250;
+  --background-end-rgb: 255, 255, 255;
+}
+
+html.dark {
+  --studio-bg: #0C0D0E;
+  --studio-surface: #141618;
+  --studio-card: #1A1D20;
+  --studio-border: #282C30;
+  --studio-hover: #22262A;
+  --studio-muted: #8E959E;
+  --studio-text: #F3F4F6;
+  --studio-subtext: #9CA3AF;
   --foreground-rgb: 243, 244, 246;
   --background-start-rgb: 12, 13, 14;
   --background-end-rgb: 20, 22, 24;
@@ -10,59 +32,169 @@
 
 html {
   scroll-behavior: smooth;
-  color-scheme: dark;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: #0C0D0E;
+  color: var(--studio-text);
+  background: var(--studio-bg);
   min-height: 100vh;
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-/* Custom Studio Scrollbar */
-::-webkit-scrollbar {
+/* Custom Studio Scrollbar - Dark */
+html.dark ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
-::-webkit-scrollbar-track {
+html.dark ::-webkit-scrollbar-track {
   background: #0C0D0E;
 }
 
-::-webkit-scrollbar-thumb {
+html.dark ::-webkit-scrollbar-thumb {
   background: #282C30;
   border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+html.dark ::-webkit-scrollbar-thumb:hover {
   background: #3F444A;
 }
 
-/* Glassmorphism & Studio Accents */
-.glass-panel {
+/* Custom Studio Scrollbar - Light */
+html:not(.dark) ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+html:not(.dark) ::-webkit-scrollbar-track {
+  background: #F8F9FA;
+}
+
+html:not(.dark) ::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Glassmorphism & Studio Accents - Dark */
+html.dark .glass-panel {
   background: rgba(20, 22, 24, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.glass-dropdown {
+html.dark .glass-dropdown {
   background: rgba(26, 29, 32, 0.95);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.studio-grid-pattern {
+/* Glassmorphism & Studio Accents - Light */
+html:not(.dark) .glass-panel {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.06);
+}
+
+html:not(.dark) .glass-dropdown {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.12);
+}
+
+/* Studio Grid Patterns */
+html.dark .studio-grid-pattern {
   background-size: 40px 40px;
   background-image: 
     linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
 }
 
+html:not(.dark) .studio-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+}
+
+/* Light Mode Overrides for Dark Utility Tokens */
+html:not(.dark) h1:not([class*="text-amber"]):not([class*="text-lime"]):not(.keep-light-color),
+html:not(.dark) h2:not([class*="text-amber"]):not([class*="text-lime"]):not(.keep-light-color),
+html:not(.dark) h3:not([class*="text-amber"]):not([class*="text-lime"]):not(.keep-light-color),
+html:not(.dark) h4:not([class*="text-amber"]):not([class*="text-lime"]):not(.keep-light-color) {
+  color: #0F172A;
+}
+
+html:not(.dark) .text-white:not(button):not(a.bg-black):not(a.bg-lime-500):not(.keep-white) {
+  color: #0F172A;
+}
+
+html:not(.dark) .text-zinc-100 {
+  color: #1E293B;
+}
+
+html:not(.dark) .text-zinc-200 {
+  color: #334155;
+}
+
+html:not(.dark) .text-zinc-300 {
+  color: #475569;
+}
+
+html:not(.dark) .text-zinc-400 {
+  color: #64748B;
+}
+
+html:not(.dark) .text-zinc-500 {
+  color: #64748B;
+}
+
+html:not(.dark) .border-white\/10,
+html:not(.dark) .border-white\/15,
+html:not(.dark) .border-white\/20,
+html:not(.dark) .border-white\/5 {
+  border-color: rgba(0, 0, 0, 0.09);
+}
+
+html:not(.dark) .bg-white\/5 {
+  background-color: rgba(0, 0, 0, 0.035);
+}
+
+html:not(.dark) .bg-white\/10 {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+html:not(.dark) .hover\:bg-white\/5:hover {
+  background-color: rgba(0, 0, 0, 0.045);
+}
+
+html:not(.dark) .hover\:bg-white\/10:hover {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+
+html:not(.dark) .shadow-premium {
+  box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
+}
+
+html:not(.dark) .shadow-subtle {
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.06);
+}
+
 .subtle-border {
   border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+html:not(.dark) .subtle-border {
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .subtle-border-hover:hover {

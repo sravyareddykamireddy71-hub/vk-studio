@@ -10,14 +10,14 @@ module.exports = {
     extend: {
       colors: {
         studio: {
-          bg: '#0C0D0E',
-          surface: '#141618',
-          card: '#1A1D20',
-          border: '#282C30',
-          hover: '#22262A',
-          muted: '#8E959E',
-          text: '#F3F4F6',
-          subtext: '#9CA3AF',
+          bg: 'var(--studio-bg)',
+          surface: 'var(--studio-surface)',
+          card: 'var(--studio-card)',
+          border: 'var(--studio-border)',
+          hover: 'var(--studio-hover)',
+          muted: 'var(--studio-muted)',
+          text: 'var(--studio-text)',
+          subtext: 'var(--studio-subtext)',
         },
         amber: {
           accent: '#D97706',

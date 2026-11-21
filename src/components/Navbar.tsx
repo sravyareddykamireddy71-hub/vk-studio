@@ -14,6 +14,7 @@ import {
   Shield,
   Package,
 } from 'lucide-react';
+import ThemeToggle from '@/components/ThemeToggle';
 import { useAuth } from '@/context/AuthContext';
 import { useCart } from '@/context/CartContext';
 
@@ -145,6 +146,9 @@ export default function Navbar() {
               >
                 <Search className="w-4 h-4" />
               </button>
+
+              {/* Theme Toggle (Dark / Light) */}
+              <ThemeToggle />
 
               {/* Shopping Cart Button */}
               <button
@@ -295,6 +299,10 @@ export default function Navbar() {
             </a>
 
             <div className="pt-4 border-t border-white/10 space-y-3">
+              <div className="flex items-center justify-between py-1">
+                <span className="text-sm font-medium text-zinc-300">Theme</span>
+                <ThemeToggle showLabel />
+              </div>
               {user ? (
                 <>
                   <Link
