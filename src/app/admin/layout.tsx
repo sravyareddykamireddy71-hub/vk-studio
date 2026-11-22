@@ -47,7 +47,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   }
 
   // Unauthorized screen if not admin
-  if (!user || user.role !== 'ADMIN') {
+  const isAuthorizedAdmin = user && (user.role === 'ADMIN' || user.email?.toLowerCase().trim() === 'vamsireddy.kata@gmail.com');
+  if (!isAuthorizedAdmin) {
     return (
       <div className="min-h-[85vh] flex items-center justify-center px-4">
         <div className="max-w-md w-full p-8 rounded-3xl bg-studio-surface border border-red-500/20 text-center space-y-4 shadow-premium">
@@ -56,14 +57,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </div>
           <h2 className="text-xl font-bold text-white">Administrator Access Required</h2>
           <p className="text-xs text-zinc-400 leading-relaxed">
-            This workspace is reserved for authorized VK STUDIO directors. Please authenticate with administrator credentials to manage the studio.
+            This workspace is reserved exclusively for the VK STUDIO Director (vamsireddy.kata@gmail.com). Please authenticate with administrator credentials to manage the studio.
           </p>
           <div className="pt-2 flex flex-col sm:flex-row gap-2 justify-center">
             <Link
               href="/login"
-              className="px-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold text-xs transition-all"
+              className="px-5 py-2.5 rounded-xl bg-lime-500 hover:bg-lime-400 text-black font-semibold text-xs transition-all"
             >
-              Sign In as Admin (admin@vkstudio.com)
+              Sign In as Admin (vamsireddy.kata@gmail.com)
             </Link>
             <Link
               href="/"

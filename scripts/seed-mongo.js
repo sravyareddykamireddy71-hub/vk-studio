@@ -27,7 +27,7 @@ async function seedMongo() {
     await usersCol.insertMany([
       {
         name: 'Vamsi Krishna (VK Studio Director)',
-        email: 'admin@vkstudio.com',
+        email: 'vamsireddy.kata@gmail.com',
         password: adminPasswordHash,
         role: 'ADMIN',
         phone: process.env.NEXT_PUBLIC_ADMIN_WHATSAPP || '+91 91004 84870',

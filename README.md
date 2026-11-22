@@ -41,7 +41,7 @@ VK STUDIO is a modern, full-stack e-commerce and administrative platform built f
 
 | Role | Email | Password |
 |---|---|---|
-| **Studio Admin** | `admin@vkstudio.com` | `admin123` |
+| **Studio Director (Admin)** | `vamsireddy.kata@gmail.com` | `admin123` |
 | **Customer** | `customer@vkstudio.com` | `customer123` |
 
 ---

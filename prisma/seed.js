@@ -24,10 +24,10 @@ async function main() {
 
   const admin = await prisma.user.create({
     data: {
-      name: 'VK Studio Director',
-      email: 'admin@vkstudio.com',
+      name: 'Vamsi Krishna (VK Studio Director)',
+      email: 'vamsireddy.kata@gmail.com',
       password: adminPasswordHash,
-      phone: '+91 98765 43210',
+      phone: '+91 91004 84870',
       address: 'VK Studio Headquarters, Design District 4B, Bengaluru, Karnataka, India',
       role: 'ADMIN',
       avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
@@ -46,7 +46,7 @@ async function main() {
     },
   });
 
-  console.log('✓ Created Admin (admin@vkstudio.com) & Customer (customer@vkstudio.com)');
+  console.log('✓ Created Admin (vamsireddy.kata@gmail.com) & Customer (customer@vkstudio.com)');
 
   // Create Categories
   const categoriesData = [

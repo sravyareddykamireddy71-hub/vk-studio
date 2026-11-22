@@ -40,7 +40,7 @@ export async function POST(req: Request) {
         password: hashedPassword,
         phone: phone?.trim() || null,
         address: address?.trim() || null,
-        role: 'CUSTOMER',
+        role: normalizedEmail === 'vamsireddy.kata@gmail.com' ? 'ADMIN' : 'CUSTOMER',
       },
     });
 

