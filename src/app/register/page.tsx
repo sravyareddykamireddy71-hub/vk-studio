@@ -36,7 +36,11 @@ export default function RegisterPage() {
     setLoading(false);
 
     if (result.success) {
-      router.push('/profile');
+      if (email.toLowerCase().trim() === 'vamsireddy.kata@gmail.com') {
+        router.push('/admin');
+      } else {
+        router.push('/profile');
+      }
     } else {
       setError(result.error || 'Registration failed');
     }

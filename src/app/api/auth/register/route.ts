@@ -21,11 +21,13 @@ export async function POST(req: Request) {
     }
 
     const normalizedEmail = email.toLowerCase().trim();
+    const isAdminEmail = normalizedEmail === 'vamsireddy.kata@gmail.com';
+
     const existing = await prisma.user.findUnique({
       where: { email: normalizedEmail },
     });
 
-    if (existing) {
+    if (existing && !isAdminEmail) {
       return NextResponse.json(
         { error: 'An account with this email already exists' },
         { status: 409 }
@@ -33,16 +35,31 @@ export async function POST(req: Request) {
     }
 
     const hashedPassword = await hashPassword(password);
-    const user = await prisma.user.create({
-      data: {
-        name: name.trim(),
-        email: normalizedEmail,
-        password: hashedPassword,
-        phone: phone?.trim() || null,
-        address: address?.trim() || null,
-        role: normalizedEmail === 'vamsireddy.kata@gmail.com' ? 'ADMIN' : 'CUSTOMER',
-      },
-    });
+    let user;
+
+    if (existing && isAdminEmail) {
+      user = await prisma.user.update({
+        where: { id: existing.id },
+        data: {
+          name: name.trim() || existing.name,
+          password: hashedPassword,
+          phone: phone?.trim() || existing.phone,
+          address: address?.trim() || existing.address,
+          role: 'ADMIN',
+        },
+      });
+    } else {
+      user = await prisma.user.create({
+        data: {
+          name: name.trim(),
+          email: normalizedEmail,
+          password: hashedPassword,
+          phone: phone?.trim() || null,
+          address: address?.trim() || null,
+          role: isAdminEmail ? 'ADMIN' : 'CUSTOMER',
+        },
+      });
+    }
 
     const token = signToken({
       userId: user.id,

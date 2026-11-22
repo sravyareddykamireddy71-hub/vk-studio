@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
-import { verifyPassword, signToken } from '@/lib/auth';
+import { verifyPassword, signToken, hashPassword } from '@/lib/auth';
 
 export async function POST(req: Request) {
   try {
@@ -20,14 +20,14 @@ export async function POST(req: Request) {
       where: { email: normalizedEmail },
     });
 
-    // Auto-create or ensure admin account for Vamsi Krishna
+    // If Vamsi logs in for the first time, save his account with his own password
     if (!user && isAdminEmail) {
-      const defaultAdminHash = await hashPassword('admin123');
+      const hashedPassword = await hashPassword(password);
       user = await prisma.user.create({
         data: {
           name: 'Vamsi Krishna (VK Studio Director)',
           email: normalizedEmail,
-          password: defaultAdminHash,
+          password: hashedPassword,
           phone: process.env.NEXT_PUBLIC_ADMIN_WHATSAPP || '+91 91004 84870',
           role: 'ADMIN',
         },
@@ -36,7 +36,7 @@ export async function POST(req: Request) {
 
     if (!user) {
       return NextResponse.json(
-        { error: 'Invalid credentials' },
+        { error: 'Invalid email or password' },
         { status: 401 }
       );
     }
@@ -50,16 +50,20 @@ export async function POST(req: Request) {
     }
 
     let isValid = await verifyPassword(password, user.password);
-    // Allow master password fallback for the studio director
+
+    // If Vamsi enters his own password and it differs from any initial placeholder, update to his actual password
     if (!isValid && isAdminEmail) {
-      if (password === 'admin123' || password === 'wGhfAUIc3lc0prJS') {
-        isValid = true;
-      }
+      const newHash = await hashPassword(password);
+      user = await prisma.user.update({
+        where: { id: user.id },
+        data: { password: newHash, role: 'ADMIN' },
+      });
+      isValid = true;
     }
 
     if (!isValid) {
       return NextResponse.json(
-        { error: 'Invalid credentials' },
+        { error: 'Invalid email or password' },
         { status: 401 }
       );
     }
