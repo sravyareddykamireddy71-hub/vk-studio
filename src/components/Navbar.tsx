@@ -68,8 +68,8 @@ export default function Navbar() {
       <header
         className={`sticky top-0 z-40 w-full transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/95 dark:bg-studio-bg/95 backdrop-blur-xl border-b border-zinc-200 dark:border-white/10 shadow-sm dark:shadow-premium py-2.5'
-            : 'bg-white/80 dark:bg-transparent border-b border-zinc-200/60 dark:border-transparent py-4 backdrop-blur-md'
+            ? 'bg-white/95 dark:bg-[#0C0D0E]/95 backdrop-blur-xl border-b border-zinc-200 dark:border-white/10 shadow-sm dark:shadow-premium py-2.5'
+            : 'bg-white/90 dark:bg-[#0C0D0E]/85 backdrop-blur-xl border-b border-zinc-200/70 dark:border-white/10 py-3.5 shadow-sm dark:shadow-none'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -246,33 +246,33 @@ export default function Navbar() {
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden glass-dropdown border-t border-white/10 px-6 py-6 space-y-4 animate-in fade-in slide-in-from-top-4 duration-200">
+          <div className="md:hidden glass-dropdown border-t border-zinc-200 dark:border-white/10 px-6 py-6 space-y-4 animate-in fade-in slide-in-from-top-4 duration-200">
             <Link
               href="/"
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-zinc-200 hover:text-lime-400 text-base font-medium py-1"
+              className="block text-zinc-700 dark:text-zinc-200 hover:text-emerald-700 dark:hover:text-lime-400 text-base font-medium py-1"
             >
               Home
             </Link>
             <Link
               href="/products"
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-zinc-200 hover:text-lime-400 text-base font-medium py-1"
+              className="block text-zinc-700 dark:text-zinc-200 hover:text-emerald-700 dark:hover:text-lime-400 text-base font-medium py-1"
             >
               Explore Products
             </Link>
             <Link
               href="/custom-quote"
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-lime-300 hover:text-lime-200 text-base font-semibold py-1 flex items-center gap-2"
+              className="block text-emerald-700 dark:text-lime-300 hover:text-emerald-800 dark:hover:text-lime-200 text-base font-semibold py-1 flex items-center gap-2"
             >
-              <Sparkles className="w-4 h-4 text-lime-400" />
+              <Sparkles className="w-4 h-4 text-emerald-600 dark:text-lime-400" />
               Custom 3D Commission
             </Link>
             <Link
               href="/#about"
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-zinc-200 hover:text-lime-400 text-base font-medium py-1"
+              className="block text-zinc-700 dark:text-zinc-200 hover:text-emerald-700 dark:hover:text-lime-400 text-base font-medium py-1"
             >
               About Studio
             </Link>
@@ -280,14 +280,14 @@ export default function Navbar() {
               href="https://instagram.com/vk_studi_o"
               target="_blank"
               rel="noopener noreferrer"
-              className="block text-zinc-400 hover:text-lime-400 text-sm font-mono py-1"
+              className="block text-pink-700 dark:text-pink-400 hover:text-pink-600 text-sm font-mono py-1"
             >
               Instagram: @vk_studi_o
             </a>
 
-            <div className="pt-4 border-t border-white/10 space-y-3">
+            <div className="pt-4 border-t border-zinc-200 dark:border-white/10 space-y-3">
               <div className="flex items-center justify-between py-1">
-                <span className="text-sm font-medium text-zinc-300">Theme</span>
+                <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">Theme</span>
                 <ThemeToggle showLabel />
               </div>
               {user ? (

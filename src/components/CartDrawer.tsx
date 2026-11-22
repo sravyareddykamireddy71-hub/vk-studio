@@ -94,7 +94,7 @@ export default function CartDrawer() {
                   return (
                     <div
                       key={item.id}
-                      className="p-4 rounded-2xl bg-studio-card/80 border border-white/10 space-y-3"
+                      className="p-4 rounded-2xl bg-zinc-100 dark:bg-[#1A1D20]/95 border border-zinc-200 dark:border-white/10 space-y-3"
                     >
                       <div className="flex items-start gap-3">
                         <img
@@ -191,7 +191,7 @@ export default function CartDrawer() {
 
           {/* Drawer Footer: Actions */}
           {items.length > 0 && (
-            <div className="p-6 border-t border-white/10 bg-studio-card/60 space-y-4">
+            <div className="p-6 border-t border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-[#1A1D20]/90 space-y-4">
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between text-xs text-zinc-400">
                   <span>Subtotal</span>

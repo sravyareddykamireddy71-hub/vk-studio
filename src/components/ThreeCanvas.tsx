@@ -211,12 +211,12 @@ export default function ThreeCanvas({
   }, [modelType, selectedColor, isWireframe, isRotating]);
 
   return (
-    <div className="relative w-full h-full min-h-[320px] rounded-2xl overflow-hidden bg-studio-surface/60 border border-white/5 flex flex-col items-center justify-center group">
+    <div className="relative w-full h-full min-h-[320px] rounded-2xl overflow-hidden bg-zinc-100/80 dark:bg-[#141618]/60 border border-zinc-200 dark:border-white/5 flex flex-col items-center justify-center group">
       {/* 3D Canvas Mount */}
       <div ref={mountRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
 
       {/* Interactive Controls Overlay */}
-      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between px-3 py-2 bg-studio-card/80 backdrop-blur-md border border-white/10 rounded-xl text-xs text-studio-subtext">
+      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between px-3 py-2 bg-white/80 dark:bg-[#1A1D20]/80 backdrop-blur-md border border-zinc-200 dark:border-white/10 rounded-xl text-xs text-zinc-700 dark:text-zinc-300">
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
           <span className="font-mono text-[11px] tracking-wide text-zinc-300">

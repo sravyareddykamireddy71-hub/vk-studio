@@ -151,7 +151,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       {/* Main Admin Content Body */}
       <div className="flex-1 min-w-0 flex flex-col bg-zinc-50/60 dark:bg-transparent">
         {/* Top bar */}
-        <header className="h-16 border-b border-zinc-200 dark:border-white/10 bg-white/90 dark:bg-studio-surface/50 backdrop-blur-md px-6 flex items-center justify-between text-xs transition-colors">
+        <header className="h-16 border-b border-zinc-200 dark:border-white/10 bg-white/90 dark:bg-[#141618]/90 backdrop-blur-md px-6 flex items-center justify-between text-xs transition-colors">
           <div className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400 font-mono">
             <span>Admin</span>
             <ChevronRight className="w-3.5 h-3.5" />

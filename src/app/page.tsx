@@ -153,43 +153,43 @@ export default async function HomePage() {
             </div>
 
             {/* 4 Customer Confidence Badges (Simple Terminology) */}
-            <div className="pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
-              <div className="p-4 rounded-2xl bg-studio-surface/80 border border-white/10 hover-lift">
-                <div className="flex items-center gap-2 text-lime-400 font-bold text-xs mb-1">
+            <div className="pt-8 border-t border-zinc-200 dark:border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
+              <div className="p-4 rounded-2xl bg-white/80 dark:bg-[#141618]/80 border border-zinc-200 dark:border-white/10 hover-lift">
+                <div className="flex items-center gap-2 text-emerald-700 dark:text-lime-400 font-bold text-xs mb-1">
                   <Box className="w-4 h-4" />
                   <span>100% 3D Printed</span>
                 </div>
-                <p className="text-[11px] text-zinc-400 leading-normal">
+                <p className="text-[11px] text-zinc-600 dark:text-zinc-400 leading-normal">
                   Authentic layer-by-layer 3D prints using strong, durable filaments. No resin crafts or mold plastics.
                 </p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-studio-surface/80 border border-white/10 hover-lift">
-                <div className="flex items-center gap-2 text-lime-400 font-bold text-xs mb-1">
+              <div className="p-4 rounded-2xl bg-white/80 dark:bg-[#141618]/80 border border-zinc-200 dark:border-white/10 hover-lift">
+                <div className="flex items-center gap-2 text-emerald-700 dark:text-lime-400 font-bold text-xs mb-1">
                   <Sliders className="w-4 h-4" />
                   <span>Personalized For You</span>
                 </div>
-                <p className="text-[11px] text-zinc-400 leading-normal">
+                <p className="text-[11px] text-zinc-600 dark:text-zinc-400 leading-normal">
                   Add your name, choose your favorite colors, and select custom dimensions easily.
                 </p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-studio-surface/80 border border-white/10 hover-lift">
-                <div className="flex items-center gap-2 text-lime-400 font-bold text-xs mb-1">
+              <div className="p-4 rounded-2xl bg-white/80 dark:bg-[#141618]/80 border border-zinc-200 dark:border-white/10 hover-lift">
+                <div className="flex items-center gap-2 text-emerald-700 dark:text-lime-400 font-bold text-xs mb-1">
                   <MessageSquare className="w-4 h-4" />
                   <span>Direct WhatsApp Updates</span>
                 </div>
-                <p className="text-[11px] text-zinc-400 leading-normal">
+                <p className="text-[11px] text-zinc-600 dark:text-zinc-400 leading-normal">
                   Direct chat with Vamsi Krishna on WhatsApp for previews, photos, and answers.
                 </p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-studio-surface/80 border border-white/10 hover-lift">
-                <div className="flex items-center gap-2 text-lime-400 font-bold text-xs mb-1">
+              <div className="p-4 rounded-2xl bg-white/80 dark:bg-[#141618]/80 border border-zinc-200 dark:border-white/10 hover-lift">
+                <div className="flex items-center gap-2 text-emerald-700 dark:text-lime-400 font-bold text-xs mb-1">
                   <Truck className="w-4 h-4" />
                   <span>Safe Doorstep Delivery</span>
                 </div>
-                <p className="text-[11px] text-zinc-400 leading-normal">
+                <p className="text-[11px] text-zinc-600 dark:text-zinc-400 leading-normal">
                   Carefully cushioned and shipped safely to your home anywhere across India.
                 </p>
               </div>

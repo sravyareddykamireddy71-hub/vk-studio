@@ -65,7 +65,7 @@ export default function RootLayout({
             className="w-full h-full object-cover object-center opacity-30 dark:opacity-20 scale-105 animate-slow-pan transition-opacity duration-700"
           />
           <div className="absolute inset-0 bg-radial-vignette pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-b from-studio-bg/60 via-studio-bg/85 to-studio-bg pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#F8F9FA]/60 via-[#F8F9FA]/85 to-[#F8F9FA] dark:from-[#0C0D0E]/60 dark:via-[#0C0D0E]/85 dark:to-[#0C0D0E] pointer-events-none" />
         </div>
 
         <ThemeProvider>

@@ -51,7 +51,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
 
         {/* Bottom subtle gradient */}
-        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-studio-surface via-studio-surface/50 to-transparent opacity-80" />
+        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white dark:from-[#141618] to-transparent opacity-80" />
       </Link>
 
       {/* Card Content */}
