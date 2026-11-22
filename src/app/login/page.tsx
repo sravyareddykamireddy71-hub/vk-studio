@@ -24,7 +24,8 @@ export default function LoginPage() {
     setLoading(false);
 
     if (result.success) {
-      if (result.user?.role === 'ADMIN' || email.toLowerCase().trim() === 'vamsireddy.kata@gmail.com') {
+      const adminEmails = ['vamsireddy.kata@gmail.com', 'vkstudio.gifts@gmail.com'];
+      if (result.user?.role === 'ADMIN' || adminEmails.includes(email.toLowerCase().trim())) {
         router.push('/admin');
       } else {
         router.push('/profile');

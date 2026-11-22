@@ -4,6 +4,16 @@ import { cookies } from 'next/headers';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'vk-studio-super-secret-key-2026-production';
 
+export const ADMIN_EMAILS: string[] = [
+  'vamsireddy.kata@gmail.com',
+  'vkstudio.gifts@gmail.com',
+];
+
+export function isAdminEmail(email?: string | null): boolean {
+  if (!email) return false;
+  return ADMIN_EMAILS.includes(email.toLowerCase().trim());
+}
+
 export interface TokenPayload {
   userId: string;
   email: string;
@@ -52,7 +62,7 @@ export async function requireAuth(): Promise<TokenPayload> {
 
 export async function requireAdmin(): Promise<TokenPayload> {
   const user = await getCurrentUser();
-  if (!user || user.role !== 'ADMIN') {
+  if (!user || (user.role !== 'ADMIN' && !isAdminEmail(user.email))) {
     throw new Error('Forbidden: Admin access required');
   }
   return user;

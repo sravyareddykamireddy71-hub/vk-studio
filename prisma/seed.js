@@ -34,6 +34,18 @@ async function main() {
     },
   });
 
+  const admin2 = await prisma.user.create({
+    data: {
+      name: 'VK Studio Official Admin',
+      email: 'vkstudio.gifts@gmail.com',
+      password: adminPasswordHash,
+      phone: '+91 91004 84870',
+      address: 'VK Studio Headquarters, Design District 4B, Bengaluru, Karnataka, India',
+      role: 'ADMIN',
+      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
+    },
+  });
+
   const customer = await prisma.user.create({
     data: {
       name: 'Aarav Sharma',

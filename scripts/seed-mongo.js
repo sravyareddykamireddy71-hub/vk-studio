@@ -34,6 +34,14 @@ async function seedMongo() {
         createdAt: new Date(),
       },
       {
+        name: 'VK Studio Official Admin',
+        email: 'vkstudio.gifts@gmail.com',
+        password: adminPasswordHash,
+        role: 'ADMIN',
+        phone: process.env.NEXT_PUBLIC_ADMIN_WHATSAPP || '+91 91004 84870',
+        createdAt: new Date(),
+      },
+      {
         name: 'Aarav Sharma',
         email: 'customer@vkstudio.com',
         password: customerPasswordHash,

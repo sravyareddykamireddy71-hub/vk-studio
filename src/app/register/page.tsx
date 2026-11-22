@@ -36,7 +36,8 @@ export default function RegisterPage() {
     setLoading(false);
 
     if (result.success) {
-      if (email.toLowerCase().trim() === 'vamsireddy.kata@gmail.com') {
+      const adminEmails = ['vamsireddy.kata@gmail.com', 'vkstudio.gifts@gmail.com'];
+      if (adminEmails.includes(email.toLowerCase().trim())) {
         router.push('/admin');
       } else {
         router.push('/profile');

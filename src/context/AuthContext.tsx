@@ -131,7 +131,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       value={{
         user,
         loading,
-        isAdmin: user?.role === 'ADMIN',
+        isAdmin: Boolean(
+          user?.role === 'ADMIN' ||
+          (user?.email && ['vamsireddy.kata@gmail.com', 'vkstudio.gifts@gmail.com'].includes(user.email.toLowerCase().trim()))
+        ),
         login,
         register,
         logout,

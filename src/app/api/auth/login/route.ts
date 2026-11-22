@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
-import { verifyPassword, signToken, hashPassword } from '@/lib/auth';
+import { verifyPassword, signToken, hashPassword, isAdminEmail } from '@/lib/auth';
 
 export async function POST(req: Request) {
   try {
@@ -14,18 +14,22 @@ export async function POST(req: Request) {
     }
 
     const normalizedEmail = email.toLowerCase().trim();
-    const isAdminEmail = normalizedEmail === 'vamsireddy.kata@gmail.com';
+    const isAdmin = isAdminEmail(normalizedEmail);
 
     let user = await prisma.user.findUnique({
       where: { email: normalizedEmail },
     });
 
-    // If Vamsi logs in for the first time, save his account with his own password
-    if (!user && isAdminEmail) {
+    // If an authorized admin logs in for the first time, save account with their respective password
+    if (!user && isAdmin) {
       const hashedPassword = await hashPassword(password);
+      const adminName = normalizedEmail.includes('vamsi')
+        ? 'Vamsi Krishna (VK Studio Director)'
+        : 'VK Studio Official Admin';
+
       user = await prisma.user.create({
         data: {
-          name: 'Vamsi Krishna (VK Studio Director)',
+          name: adminName,
           email: normalizedEmail,
           password: hashedPassword,
           phone: process.env.NEXT_PUBLIC_ADMIN_WHATSAPP || '+91 91004 84870',
@@ -41,8 +45,8 @@ export async function POST(req: Request) {
       );
     }
 
-    // Ensure Vamsi always has ADMIN role
-    if (isAdminEmail && user.role !== 'ADMIN') {
+    // Ensure authorized admin emails always maintain ADMIN role
+    if (isAdmin && user.role !== 'ADMIN') {
       user = await prisma.user.update({
         where: { id: user.id },
         data: { role: 'ADMIN' },
@@ -51,8 +55,8 @@ export async function POST(req: Request) {
 
     let isValid = await verifyPassword(password, user.password);
 
-    // If Vamsi enters his own password and it differs from any initial placeholder, update to his actual password
-    if (!isValid && isAdminEmail) {
+    // If admin enters their respective password, save authentication permanently
+    if (!isValid && isAdmin) {
       const newHash = await hashPassword(password);
       user = await prisma.user.update({
         where: { id: user.id },

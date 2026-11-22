@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
-import { hashPassword, signToken } from '@/lib/auth';
+import { hashPassword, signToken, isAdminEmail } from '@/lib/auth';
 
 export async function POST(req: Request) {
   try {
@@ -21,13 +21,13 @@ export async function POST(req: Request) {
     }
 
     const normalizedEmail = email.toLowerCase().trim();
-    const isAdminEmail = normalizedEmail === 'vamsireddy.kata@gmail.com';
+    const isAdmin = isAdminEmail(normalizedEmail);
 
     const existing = await prisma.user.findUnique({
       where: { email: normalizedEmail },
     });
 
-    if (existing && !isAdminEmail) {
+    if (existing && !isAdmin) {
       return NextResponse.json(
         { error: 'An account with this email already exists' },
         { status: 409 }
@@ -37,7 +37,7 @@ export async function POST(req: Request) {
     const hashedPassword = await hashPassword(password);
     let user;
 
-    if (existing && isAdminEmail) {
+    if (existing && isAdmin) {
       user = await prisma.user.update({
         where: { id: existing.id },
         data: {
@@ -56,7 +56,7 @@ export async function POST(req: Request) {
           password: hashedPassword,
           phone: phone?.trim() || null,
           address: address?.trim() || null,
-          role: isAdminEmail ? 'ADMIN' : 'CUSTOMER',
+          role: isAdmin ? 'ADMIN' : 'CUSTOMER',
         },
       });
     }
