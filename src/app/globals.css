@@ -61,7 +61,36 @@ h1, h2, h3, h4, .font-display {
     transform: translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(-12px) rotate(0.8deg);
+    transform: translateY(-10px) rotate(0.4deg);
+  }
+}
+
+@keyframes float-brand {
+  0%, 100% {
+    transform: translateY(0px);
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.7));
+  }
+  50% {
+    transform: translateY(-10px);
+    filter: drop-shadow(0 25px 38px rgba(0, 0, 0, 0.85));
+  }
+}
+
+@keyframes float-gentle-left {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes float-gentle-right {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-9px);
   }
 }
 
@@ -70,7 +99,7 @@ h1, h2, h3, h4, .font-display {
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
   }
 }
 
@@ -80,8 +109,8 @@ h1, h2, h3, h4, .font-display {
     transform: scale(1);
   }
   50% {
-    opacity: 0.7;
-    transform: scale(1.08);
+    opacity: 0.65;
+    transform: scale(1.05);
   }
 }
 
@@ -90,7 +119,7 @@ h1, h2, h3, h4, .font-display {
     transform: scale(1.04) translate(0%, 0%);
   }
   50% {
-    transform: scale(1.09) translate(-1%, -0.8%);
+    transform: scale(1.08) translate(-1%, -0.8%);
   }
   100% {
     transform: scale(1.04) translate(0%, 0%);
@@ -99,6 +128,21 @@ h1, h2, h3, h4, .font-display {
 
 .animate-float {
   animation: float 4.5s ease-in-out infinite;
+}
+
+.animate-float-brand {
+  animation: float-brand 5.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  will-change: transform;
+}
+
+.animate-float-gentle-left {
+  animation: float-gentle-left 6s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  will-change: transform;
+}
+
+.animate-float-gentle-right {
+  animation: float-gentle-right 5.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite 0.8s;
+  will-change: transform;
 }
 
 .animate-float-slow {
@@ -124,6 +168,31 @@ h1, h2, h3, h4, .font-display {
 
 .hover-lift:hover {
   transform: translateY(-6px);
+}
+
+.interactive-card {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+
+.interactive-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.1);
+}
+
+html.dark .interactive-card:hover {
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.7);
+}
+
+.btn-hover-effect {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, filter 0.2s ease;
+}
+
+.btn-hover-effect:hover {
+  transform: translateY(-2px);
+}
+
+.btn-hover-effect:active {
+  transform: translateY(0px) scale(0.98);
 }
 
 .hover-glow {
@@ -335,4 +404,157 @@ html:not(.dark) .subtle-border {
 ::selection {
   background: #a3e635;
   color: #000000;
+}
+
+/* ============================================================== */
+/* HYPER3D SPATIAL DESIGN SYSTEM UTILITIES                       */
+/* ============================================================== */
+
+/* High-tech CAD Matrix Grid */
+.hyper-grid-pattern {
+  background-size: 32px 32px;
+  background-image: 
+    radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+}
+
+html:not(.dark) .hyper-grid-pattern {
+  background-size: 32px 32px;
+  background-image: 
+    radial-gradient(circle, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+}
+
+/* Hyper3D Deep Spatial Mesh Glow */
+.hyper-bg-mesh {
+  position: relative;
+}
+
+.hyper-bg-mesh::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1200px;
+  height: 600px;
+  background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(163, 230, 53, 0.08) 0%, rgba(16, 185, 129, 0.04) 40%, transparent 80%),
+              radial-gradient(ellipse 40% 40% at 80% 20%, rgba(139, 92, 246, 0.06) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Hyper3D Spatial Pedestal Card */
+.hyper-card {
+  position: relative;
+  background: rgba(18, 19, 23, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
+}
+
+html:not(.dark) .hyper-card {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.06);
+}
+
+.hyper-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(163, 230, 53, 0.4);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7),
+              0 0 30px -5px rgba(163, 230, 53, 0.12);
+}
+
+html:not(.dark) .hyper-card:hover {
+  border-color: rgba(5, 150, 105, 0.4);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.12),
+              0 0 25px -5px rgba(5, 150, 105, 0.1);
+}
+
+/* Studio Floor Pedestal Shadow beneath 3D objects */
+.pedestal-shadow {
+  position: relative;
+}
+
+.pedestal-shadow::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 24px;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.5) 0%, transparent 75%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Technical Monospace Pill Badge */
+.hyper-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #a3e635;
+  backdrop-filter: blur(8px);
+}
+
+html:not(.dark) .hyper-badge {
+  background: rgba(5, 150, 105, 0.08);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+  color: #047857;
+}
+
+/* Shimmer Border for Hero Buttons */
+@keyframes border-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.btn-hyper-primary {
+  position: relative;
+  background: #a3e635;
+  color: #0c0d0e;
+  font-weight: 800;
+  border-radius: 1rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px -2px rgba(163, 230, 53, 0.35);
+}
+
+.btn-hyper-primary:hover {
+  transform: translateY(-2px);
+  background: #bef264;
+  box-shadow: 0 8px 28px -4px rgba(163, 230, 53, 0.5);
+}
+
+.btn-hyper-primary:active {
+  transform: translateY(0px) scale(0.98);
+}
+
+/* Reduced Motion Support for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

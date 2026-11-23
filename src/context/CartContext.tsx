@@ -26,20 +26,23 @@ interface CartContextType {
   itemCount: number;
   subtotal: number;
   isCartOpen: boolean;
+  whatsappNumber: string;
   openCart: () => void;
   closeCart: () => void;
   toggleCart: () => void;
   addToCart: (
     product: any,
-    quantity: number,
-    customizationData: Record<string, any>,
-    unitPrice: number,
-    customizationPrice: number
+    quantity?: number,
+    customizationData?: Record<string, any>,
+    unitPrice?: number,
+    customizationPrice?: number
   ) => Promise<void>;
   updateQuantity: (itemId: string, quantity: number) => Promise<void>;
   removeFromCart: (itemId: string) => Promise<void>;
   clearCart: () => Promise<void>;
-  getWhatsAppShareUrl: (whatsappNumber?: string) => string;
+  getWhatsAppShareUrl: (customNote?: string) => string;
+  getWhatsAppProductUrl: (productName: string, productSlug?: string, price?: number) => string;
+  getWhatsAppCustomInquiryUrl: (idea?: string) => string;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -52,6 +55,19 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [guestSessionId, setGuestSessionId] = useState<string>('');
+  const [whatsappNumber, setWhatsappNumber] = useState<string>('+91 91004 84870');
+
+  // Fetch live WhatsApp number from website settings
+  useEffect(() => {
+    fetch('/api/settings')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.settings?.whatsappNumber) {
+          setWhatsappNumber(data.settings.whatsappNumber);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   // Initialize guest session ID on mount
   useEffect(() => {
@@ -123,12 +139,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const addToCart = async (
     product: any,
-    quantity: number,
-    customizationData: Record<string, any>,
-    unitPrice: number,
-    customizationPrice: number
+    quantity: number = 1,
+    customizationData: Record<string, any> = {},
+    unitPrice?: number,
+    customizationPrice: number = 0
   ) => {
-    const singleTotal = (unitPrice + customizationPrice) * quantity;
+    const finalUnitPrice = unitPrice !== undefined ? unitPrice : (product.basePrice || 0);
+    const singleTotal = (finalUnitPrice + customizationPrice) * quantity;
 
     if (user) {
       try {
@@ -139,7 +156,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
             productId: product.id,
             quantity,
             customizationData,
-            unitPrice,
+            unitPrice: finalUnitPrice,
             customizationPrice,
             totalPrice: singleTotal,
           }),
@@ -163,11 +180,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
           slug: product.slug,
           basePrice: product.basePrice,
           images: typeof product.images === 'string' ? product.images : JSON.stringify(product.images),
-          leadTimeDays: product.leadTimeDays || 3,
+          leadTimeDays: product.leadTimeDays || 4,
         },
         quantity,
         customizationData,
-        unitPrice,
+        unitPrice: finalUnitPrice,
         customizationPrice,
         totalPrice: singleTotal,
       };
@@ -239,52 +256,64 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  // WhatsApp Order Discussion URL generator
-  const getWhatsAppShareUrl = (customWhatsappNumber?: string) => {
-    const rawNumber = customWhatsappNumber || process.env.NEXT_PUBLIC_ADMIN_WHATSAPP || '+919100484870';
-    const cleanNumber = rawNumber.replace(/[^0-9]/g, '');
+  // WhatsApp Cart Inquiry generator
+  const getWhatsAppShareUrl = (customNote?: string) => {
+    const cleanNumber = (whatsappNumber || '+91 91004 84870').replace(/[^0-9]/g, '');
 
     if (items.length === 0) {
-      const message = encodeURIComponent(
-        `*Hello VK STUDIO!* 👋\n\nI am browsing your 3D printing studio and would like to inquire about a custom commission.`
-      );
-      return `https://wa.me/${cleanNumber}?text=${message}`;
+      const message = `Hello VK STUDIO! 👋\n\nI am browsing your 3D printing store and would like to ask about product availability and custom orders.\n\nThank you!`;
+      return `https://wa.me/${cleanNumber}?text=${encodeURIComponent(message)}`;
     }
 
-    let text = `*New Order Inquiry – VK STUDIO*\n`;
-    text += `━━━━━━━━━━━━━━━━━━━━━\n\n`;
-
-    if (user) {
-      text += `*Customer:* ${user.name} (${user.email})\n`;
-      if (user.phone) text += `*Phone:* ${user.phone}\n`;
-      text += `\n`;
-    }
-
-    text += `*Items in Cart (${items.length}):*\n\n`;
+    const refId = 'VK-' + (guestSessionId || 'CART').slice(-6).toUpperCase();
+    let text = `Hello VK STUDIO!\n\n`;
+    text += `I am interested in ordering the following products:\n\n`;
 
     items.forEach((item, index) => {
-      text += `*${index + 1}. ${item.product.name}*\n`;
-      text += `• Qty: ${item.quantity}\n`;
-      text += `• Price: ₹${item.totalPrice.toLocaleString('en-IN')}\n`;
-
-      const customKeys = Object.keys(item.customizationData || {});
-      if (customKeys.length > 0) {
-        text += `• *Customizations:*\n`;
-        customKeys.forEach((key) => {
-          const val = item.customizationData[key];
-          if (val) {
-            text += `   - ${key.replace(/_/g, ' ')}: ${val}\n`;
-          }
-        });
-      }
-      text += `\n`;
+      const priceText = item.unitPrice > 0 ? ` – Listed Price: ₹${item.unitPrice.toLocaleString('en-IN')}` : '';
+      text += `${index + 1}. ${item.product.name} – Quantity: ${item.quantity}${priceText}\n`;
     });
 
-    const subtotal = items.reduce((acc, it) => acc + it.totalPrice, 0);
-    text += `━━━━━━━━━━━━━━━━━━━━━\n`;
-    text += `*Estimated Cart Total:* ₹${subtotal.toLocaleString('en-IN')}\n\n`;
-    text += `I would like to discuss fabrication timelines, filament finish samples, and finalize this order. Thank you!`;
+    if (subtotal > 0) {
+      text += `\nCart Subtotal: ₹${subtotal.toLocaleString('en-IN')}\n`;
+    }
+    text += `Cart Reference: ${refId}\n\n`;
+    text += `I would like to know the final pricing and availability.\n\n`;
+    if (customNote && customNote.trim()) {
+      text += `Customization Note / Request:\n"${customNote.trim()}"\n\n`;
+    } else {
+      text += `I also have some customization requirements. Please let me know how we can proceed.\n\n`;
+    }
+    text += `Thank you!`;
 
+    return `https://wa.me/${cleanNumber}?text=${encodeURIComponent(text)}`;
+  };
+
+  // WhatsApp Single Product Inquiry generator
+  const getWhatsAppProductUrl = (productName: string, productSlug?: string, price?: number) => {
+    const cleanNumber = (whatsappNumber || '+91 91004 84870').replace(/[^0-9]/g, '');
+    let text = `Hello VK STUDIO! 👋\n\n`;
+    text += `I am interested in this 3D product: *${productName}*`;
+    if (price && price > 0) {
+      text += ` (Listed Price: ₹${price.toLocaleString('en-IN')})`;
+    }
+    text += `\n`;
+    if (typeof window !== 'undefined' && productSlug) {
+      text += `Product Link: ${window.location.origin}/products/${productSlug}\n`;
+    }
+    text += `\nI would like to know more about final pricing, preparation time, and any customization options.\n\nThank you!`;
+    return `https://wa.me/${cleanNumber}?text=${encodeURIComponent(text)}`;
+  };
+
+  // WhatsApp Custom Commission Inquiry generator
+  const getWhatsAppCustomInquiryUrl = (idea?: string) => {
+    const cleanNumber = (whatsappNumber || '+91 91004 84870').replace(/[^0-9]/g, '');
+    let text = `Hello VK STUDIO! 👋\n\n`;
+    text += `I am looking for a custom 3D printed creation.\n\n`;
+    if (idea && idea.trim()) {
+      text += `Here is what I have in mind: ${idea.trim()}\n\n`;
+    }
+    text += `I would like to discuss my idea, dimensions, colors, and pricing.\n\nThank you!`;
     return `https://wa.me/${cleanNumber}?text=${encodeURIComponent(text)}`;
   };
 
@@ -298,6 +327,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         itemCount,
         subtotal,
         isCartOpen,
+        whatsappNumber,
         openCart: () => setIsCartOpen(true),
         closeCart: () => setIsCartOpen(false),
         toggleCart: () => setIsCartOpen((prev) => !prev),
@@ -306,6 +336,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         removeFromCart,
         clearCart,
         getWhatsAppShareUrl,
+        getWhatsAppProductUrl,
+        getWhatsAppCustomInquiryUrl,
       }}
     >
       {children}

@@ -13,6 +13,7 @@ import {
   Sparkles,
   ArrowUpRight,
   Layers,
+  ArrowRight,
 } from 'lucide-react';
 
 export default function Footer() {
@@ -36,16 +37,83 @@ export default function Footer() {
       .catch(() => {});
   }, []);
 
-  const cleanWhatsapp = (settings.whatsappNumber || '+919100484870').replace(/[^0-9]/g, '');
+  const cleanWhatsapp = (settings.whatsappNumber || '+91 91004 84870').replace(/[^0-9]/g, '');
+
+  const whatsappInquiryUrl = `https://wa.me/${cleanWhatsapp}?text=${encodeURIComponent(
+    'Hello VK STUDIO! Looking for something customized. I would like to discuss my idea with you.'
+  )}`;
+
+  const whatsappUrgentUrl = `https://wa.me/${cleanWhatsapp}?text=${encodeURIComponent(
+    'Hello VK STUDIO! I would like to inquire about product preparation time and discuss an urgent 3D printing order.'
+  )}`;
 
   return (
     <footer className="relative z-20 bg-white dark:bg-[#0C0D0E] border-t border-zinc-200 dark:border-white/10 text-zinc-700 dark:text-zinc-400 text-xs shadow-2xl transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 space-y-12">
+        {/* ============================================================== */}
+        {/* 1. MANDATORY FOOTER BANNERS: 4-DAY PREP + WHATSAPP CUSTOMIZE  */}
+        {/* ============================================================== */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* 4-Day Preparation Notice */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-amber-500/10 border border-amber-500/25 dark:bg-amber-400/10 dark:border-amber-400/20 text-amber-900 dark:text-amber-200 flex items-start gap-3 shadow-sm">
+            <Clock className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
+            <div className="space-y-1">
+              <p className="font-bold text-xs uppercase tracking-wider font-mono">
+                Production Time Notice
+              </p>
+              <p className="text-xs leading-relaxed">
+                Every creation takes time and care. Our products require a minimum of 4 days for preparation.
+                Need it urgently?{' '}
+                <a
+                  href={whatsappUrgentUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold underline text-amber-950 dark:text-amber-100 hover:text-emerald-700 dark:hover:text-lime-300"
+                >
+                  Contact us on WhatsApp to discuss availability.
+                </a>
+              </p>
+            </div>
+          </div>
+
+          {/* WhatsApp Customization Callout */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/25 dark:bg-lime-400/10 dark:border-lime-400/20 text-emerald-950 dark:text-emerald-200 flex items-start gap-3 shadow-sm">
+            <Sparkles className="w-5 h-5 text-emerald-600 dark:text-lime-400 flex-shrink-0 mt-0.5" />
+            <div className="space-y-1 flex-1">
+              <p className="font-bold text-xs uppercase tracking-wider font-mono text-emerald-800 dark:text-lime-400">
+                Custom 3D Commissions
+              </p>
+              <p className="text-xs leading-relaxed">
+                Looking for something customized? We can create it for you.{' '}
+                <a
+                  href={whatsappInquiryUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold underline text-emerald-800 dark:text-lime-300 hover:text-emerald-950"
+                >
+                  Contact us on WhatsApp to discuss your idea.
+                </a>
+              </p>
+            </div>
+            <a
+              href={whatsappInquiryUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white flex-shrink-0 shadow-sm transition-all"
+              title="Chat on WhatsApp"
+            >
+              <MessageCircle className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+
+        {/* ============================================================== */}
+        {/* 2. FOOTER MAIN GRID                                           */}
+        {/* ============================================================== */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand Info with Official Logo */}
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="flex items-center gap-3 group">
-              {/* Prestigious emblem container that looks stunning in both light and dark */}
               <div className="w-12 h-12 rounded-2xl p-1 bg-zinc-950 border border-zinc-300 dark:border-white/20 shadow-md group-hover:border-lime-500 transition-all flex-shrink-0 ring-2 ring-black/5 dark:ring-white/5">
                 <img
                   src="/images/logo.jpg"
@@ -80,7 +148,7 @@ export default function Footer() {
               </a>
 
               <a
-                href={`https://wa.me/${cleanWhatsapp}?text=${encodeURIComponent('Hello Vamsi Krishna! I would like to inquire about a custom 3D print.')}`}
+                href={whatsappInquiryUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-600/10 hover:bg-emerald-600/20 text-emerald-800 dark:text-emerald-400 border border-emerald-500/30 transition-all font-semibold"
@@ -106,7 +174,7 @@ export default function Footer() {
               <li>
                 <Link href="/custom-quote" className="text-emerald-700 dark:text-lime-300 hover:underline font-semibold flex items-center gap-1">
                   <Sparkles className="w-3 h-3 text-emerald-600 dark:text-lime-400" />
-                  Custom 3D Commission
+                  Custom 3D via WhatsApp
                 </Link>
               </li>
               <li>
@@ -115,8 +183,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/cart" className="text-zinc-600 dark:text-zinc-400 hover:text-emerald-700 dark:hover:text-lime-400 transition-colors">
-                  Shopping Cart
+                <Link href="/login" className="text-zinc-600 dark:text-zinc-400 hover:text-emerald-700 dark:hover:text-lime-400 transition-colors">
+                  Customer Sign In
                 </Link>
               </li>
             </ul>
@@ -197,9 +265,9 @@ export default function Footer() {
         </div>
 
         {/* Studio Pillars Badges */}
-        <div className="mt-12 pt-8 border-t border-zinc-200 dark:border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="pt-8 border-t border-zinc-200 dark:border-white/10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <div className="flex items-center gap-2.5 p-3 rounded-2xl bg-zinc-50 dark:bg-white/5 border border-zinc-200/80 dark:border-white/5">
-            <div className="p-2 rounded-xl bg-emerald-500/10 dark:bg-lime-400/10 text-emerald-700 dark:text-lime-400">
+            <div className="p-2 rounded-xl bg-emerald-500/10 dark:bg-lime-400/10 text-emerald-700 dark:text-lime-400 flex-shrink-0">
               <Layers className="w-4 h-4" />
             </div>
             <div>
@@ -209,44 +277,42 @@ export default function Footer() {
           </div>
 
           <div className="flex items-center gap-2.5 p-3 rounded-2xl bg-zinc-50 dark:bg-white/5 border border-zinc-200/80 dark:border-white/5">
-            <div className="p-2 rounded-xl bg-emerald-500/10 dark:bg-lime-400/10 text-emerald-700 dark:text-lime-400">
-              <Sparkles className="w-4 h-4" />
+            <div className="p-2 rounded-xl bg-emerald-500/10 dark:bg-lime-400/10 text-emerald-700 dark:text-lime-400 flex-shrink-0">
+              <Clock className="w-4 h-4" />
             </div>
             <div>
-              <p className="font-bold text-zinc-950 dark:text-white text-xs">Personalized For You</p>
-              <p className="text-[10px] text-zinc-600 dark:text-zinc-400">Your name, colors & size</p>
+              <p className="font-bold text-zinc-950 dark:text-white text-xs">Min. 4 Days Preparation</p>
+              <p className="text-[10px] text-zinc-600 dark:text-zinc-400">Careful craft for durability</p>
             </div>
           </div>
 
           <div className="flex items-center gap-2.5 p-3 rounded-2xl bg-zinc-50 dark:bg-white/5 border border-zinc-200/80 dark:border-white/5">
-            <div className="p-2 rounded-xl bg-emerald-500/10 dark:bg-lime-400/10 text-emerald-700 dark:text-lime-400">
+            <div className="p-2 rounded-xl bg-emerald-500/10 dark:bg-lime-400/10 text-emerald-700 dark:text-lime-400 flex-shrink-0">
               <ShieldCheck className="w-4 h-4" />
             </div>
             <div>
               <p className="font-bold text-zinc-950 dark:text-white text-xs">100% 3D Printed</p>
-              <p className="text-[10px] text-zinc-600 dark:text-zinc-400">Premium PLA & Tough PETG</p>
+              <p className="text-[10px] text-zinc-600 dark:text-zinc-400">Strong PLA & Tough PETG</p>
             </div>
           </div>
 
           <div className="flex items-center gap-2.5 p-3 rounded-2xl bg-zinc-50 dark:bg-white/5 border border-zinc-200/80 dark:border-white/5">
-            <div className="p-2 rounded-xl bg-emerald-500/10 dark:bg-lime-400/10 text-emerald-700 dark:text-lime-400">
-              <Cpu className="w-4 h-4" />
+            <div className="p-2 rounded-xl bg-emerald-500/10 dark:bg-lime-400/10 text-emerald-700 dark:text-lime-400 flex-shrink-0">
+              <MessageCircle className="w-4 h-4" />
             </div>
             <div>
-              <p className="font-bold text-zinc-950 dark:text-white text-xs">Made Just For You</p>
-              <p className="text-[10px] text-zinc-600 dark:text-zinc-400">Printed fresh upon order</p>
+              <p className="font-bold text-zinc-950 dark:text-white text-xs">WhatsApp Personal Chat</p>
+              <p className="text-[10px] text-zinc-600 dark:text-zinc-400">Direct assistance from Vamsi</p>
             </div>
           </div>
         </div>
 
-        {/* ============================================================== */}
-        {/* BOTTOM BAR: HIGHLY VISIBLE COPYRIGHT SECTION IN BOTH THEMES     */}
-        {/* ============================================================== */}
-        <div className="mt-10 p-5 rounded-2xl bg-zinc-100 dark:bg-black/60 border border-zinc-200 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
+        {/* BOTTOM BAR: COPYRIGHT SECTION */}
+        <div className="p-4 sm:p-5 rounded-2xl bg-zinc-100 dark:bg-black/60 border border-zinc-200 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between text-center sm:text-left gap-3 sm:gap-4 shadow-sm">
           <p className="font-bold text-zinc-900 dark:text-zinc-100 text-xs sm:text-[13px] tracking-wide">
             © 2026 VK STUDIO by Vamsi Krishna. All Rights Reserved.
           </p>
-          <div className="flex items-center gap-6 text-xs">
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-3 sm:gap-6 text-xs">
             <a
               href="https://instagram.com/vk_studi_o"
               target="_blank"
@@ -256,7 +322,7 @@ export default function Footer() {
               <Instagram className="w-3.5 h-3.5 text-pink-600 dark:text-pink-400" />
               <span>Instagram: @vk_studi_o</span>
             </a>
-            <span className="text-zinc-400 dark:text-zinc-600 font-bold">•</span>
+            <span className="text-zinc-400 dark:text-zinc-600 font-bold hidden sm:inline">•</span>
             <Link
               href="/admin"
               className="text-emerald-800 dark:text-lime-400 hover:underline font-mono font-bold transition-colors"
